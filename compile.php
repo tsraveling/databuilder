@@ -252,7 +252,7 @@ function compileObject($object) {
     $vardecoder = "";
 
     $varinstancedec = "";
-    $varinstancecode = "";
+    $varinstancencode = "";
     $varinit = "";
 
     $vargetset = "";
@@ -320,22 +320,29 @@ function compileObject($object) {
         $vardecoder .= "        if ([decoder containsValueForKey:@\"$varname\"]) $varname = [decoder decodeObjectForKey:@\"$varname\"];§";
 
         // Build instance
-        if ($variable->kind != 4 && $variable->title != "UID") { // Arrays and UIDs don't get included in the instance function
+        if ($variable->kind != 4) { // Arrays and UIDs don't get included in the instance function
 
             // Build instance declaration
             if ($varinstancedec=="")
                 $varinstancedec = "+ ($classname*)instanceWith";
             else
                 $varinstancedec .= " with";
-            $varinstancedec .= $varhandle . ":($shorthand_varc)$lowvar";
+
+            if ($variable->kind == 7)
+                $varinstancedec .= $varhandle . ":(int)$lowvar";
+            else
+                $varinstancedec .= $varhandle . ":($shorthand_varc)$lowvar";
 
             // Build instance code
-            if ($variable->kind==0)$varinstancecode .= "    ret.$varname = [NSNumber numberWithInt:$lowvar];§";
-            if ($variable->kind==1)$varinstancecode .= "    ret.$varname = [NSNumber numberWithFloat:$lowvar];§";
-            if ($variable->kind==6)$varinstancecode .= "    ret.$varname = [NSNumber numberWithBool:$lowvar];§";
+            if ($variable->kind==0)$varinstancencode .= "    ret.$varname = [NSNumber numberWithInt:$lowvar];§";
+            if ($variable->kind==1)$varinstancencode .= "    ret.$varname = [NSNumber numberWithFloat:$lowvar];§";
+            if ($variable->kind==6)$varinstancencode .= "    ret.$varname = [NSNumber numberWithBool:$lowvar];§";
             if ($variable->kind>1 && $variable->kind<6)
-                $varinstancecode .= "    ret.$varname = $lowvar;§";
+                $varinstancencode .= "    ret.$varname = $lowvar;§";
 
+            if ($variable->kind==7) {
+                $varinstancencode .= "    if ($lowvar != -1) ret.$varname = [NSString stringWithFormat:@\"const%i\",$lowvar];§";
+            }
         }
 
         // Build init
@@ -373,6 +380,21 @@ function compileObject($object) {
             $varadders .= "{§";
             $varadders .= "    [$varname addObject:ob];§";
             $varadders .= "}§";
+
+            // Getter based on UID
+
+            $varaddersdec .= "// - (".$variable->class."*)get$addname"."ForID:(int)i;§";
+
+            $varadders .= "§// Get from array by id§";
+            $varadders .= "/*§";
+            $varadders .= "- (".$variable->class."*)get$addname"."ForID:(int)i§";
+            $varadders .= "{§";
+            $varadders .= "    for (".$variable->class." *ob in $varname) {§";
+            $varadders .= "        if ([ob hasID:[NSString stringWithFormat:@\"const%i\",i]])§";
+            $varadders .= "            return ob;§";
+            $varadders .= "    }§";
+            $varadders .= "    return nil;§";
+            $varadders .= "}§ */§";
         }
 
         // Getters and Setters
@@ -636,7 +658,7 @@ function compileObject($object) {
     fout("§".$varinstancedec."§");
     fout("{§");
     fout("    $classname* ret = [$classname instance];§");
-    fout($varinstancecode);
+    fout($varinstancencode);
     fout("    return ret;§");
     fout("}§");
 
