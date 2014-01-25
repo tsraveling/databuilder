@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e6b52590-cfdf-499a-83ac-0e4ef047c7d5" name="Default" comment="" />
+    <ignored path="databuilder.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="databuilder" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="bootstrap.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bootstrap.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="431" column="26" selection-start="9396" selection-end="9396" vertical-scroll-proportion="0.0" vertical-offset="6537" max-vertical-offset="7140">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="review.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/review.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="8" selection-start="992" selection-end="1439" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="3465">
+              <folding>
+                <marker date="1390379622000" expanded="true" signature="826:862" placeholder="SELECT * FRO..projects..." />
+                <marker date="1390379622000" expanded="true" signature="1052:1120" placeholder="SELECT * FRO..objects..." />
+                <marker date="1390379622000" expanded="true" signature="1833:2031" placeholder="SELECT id FR..objects..." />
+                <marker date="1390379622000" expanded="true" signature="1833:1874" placeholder="SELECT id FR..objects..." />
+                <marker date="1390379622000" expanded="true" signature="2102:2156" placeholder="SELECT * FRO..objects..." />
+                <marker date="1390379622000" expanded="true" signature="2381:2434" placeholder="SELECT * FRO..objects..." />
+                <marker date="1390379622000" expanded="true" signature="3605:3630" placeholder="..." />
+                <marker date="1390379622000" expanded="true" signature="3632:3686" placeholder="SELECT * FRO..objects..." />
+                <marker date="1390379622000" expanded="true" signature="4474:5683" placeholder="..." />
+                <marker date="1390379622000" expanded="true" signature="4497:5683" placeholder="..." />
+                <marker date="1390379622000" expanded="true" signature="5063:5603" placeholder="..." />
+                <marker date="1390379622000" expanded="true" signature="5236:5246" placeholder="..." />
+                <marker date="1390379622000" expanded="true" signature="5854:5908" placeholder="SELECT * FRO..objects..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="styles.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/styles.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="484" column="33" selection-start="8188" selection-end="8188" vertical-scroll-proportion="0.0" vertical-offset="6717" max-vertical-offset="7500">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="compile.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/compile.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="361" column="9" selection-start="12360" selection-end="12360" vertical-scroll-proportion="0.48877373" vertical-offset="5132" max-vertical-offset="10545">
+              <folding>
+                <element signature="e#6#92#0" expanded="true" />
+                <marker date="1390642270000" expanded="true" signature="888:924" placeholder="SELECT * FRO..projects..." />
+                <marker date="1390642270000" expanded="true" signature="1957:2011" placeholder="SELECT * FRO..objects..." />
+                <marker date="1390642270000" expanded="true" signature="2236:2289" placeholder="SELECT * FRO..objects..." />
+                <marker date="1390642270000" expanded="true" signature="6809:6863" placeholder="SELECT * FRO..objects..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="object.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/object.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="96" column="124" selection-start="2404" selection-end="2404" vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="1635">
+              <folding>
+                <marker date="1390326014000" expanded="true" signature="1270:1580" placeholder="..." />
+                <marker date="1390326014000" expanded="true" signature="1304:1569" placeholder="{...}" />
+                <marker date="1390326014000" expanded="true" signature="1321:1481" placeholder="{&quot;url&quot;: &quot;object-ajax.php&quot;...}" />
+                <marker date="1390326014000" expanded="true" signature="1400:1471" placeholder="{...}" />
+                <marker date="1390326014000" expanded="true" signature="1502:1561" placeholder="{...}" />
+                <marker date="1390326014000" expanded="true" signature="1684:1738" placeholder="SELECT * FRO..objects..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="project.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="5" selection-start="432" selection-end="776" vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1155">
+              <folding>
+                <marker date="1390321147000" expanded="true" signature="453:521" placeholder="SELECT * FRO..objects..." />
+                <marker date="1390321147000" expanded="true" signature="983:1038" placeholder="SELECT * FRO..objects..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="variable.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/variable.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="57" column="86" selection-start="1743" selection-end="1743" vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1230">
+              <folding>
+                <marker date="1390326129000" expanded="false" signature="1472:1484" placeholder="..." />
+                <marker date="1390326129000" expanded="true" signature="1684:1743" placeholder="SELECT * FRO..objects..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/config.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/bootstrap-local.php" />
+        <option value="$PROJECT_DIR$/classes/Input.php" />
+        <option value="$PROJECT_DIR$/object-ajax.php" />
+        <option value="$PROJECT_DIR$/project.php" />
+        <option value="$PROJECT_DIR$/object.php" />
+        <option value="$PROJECT_DIR$/variable.php" />
+        <option value="$PROJECT_DIR$/review.php" />
+        <option value="$PROJECT_DIR$/styles.css" />
+        <option value="$PROJECT_DIR$/bootstrap.php" />
+        <option value="$PROJECT_DIR$/compile.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="MAMP">
+    <include_path>
+      <path value="." />
+      <path value="/Applications/MAMP/bin/php/php5.4.4/lib/php" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="10" />
+    <option name="y" value="22" />
+    <option name="width" value="1260" />
+    <option name="height" value="760" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="databuilder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="databuilder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="databuilder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="databuilder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="databuilder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="databuilder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="databuilder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ajax" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.lastSelected" value="Errors" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../netwirth_portal/li_items.php" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="SearchEverywhereHistory" value="&quot;&#10;$&#10;$va" />
+    <property name="FullScreen" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="0d8e351c-644b-4996-9896-c04a9f732a67" server_name="Localhost">
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e6b52590-cfdf-499a-83ac-0e4ef047c7d5" name="Default" comment="" />
+      <created>1390148278170</created>
+      <updated>1390148278170</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="10" y="22" width="1260" height="760" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936507" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2536946" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USERS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="431" column="26" selection-start="9396" selection-end="9396" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/review.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="8" selection-start="992" selection-end="1439" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="3465">
+          <folding>
+            <marker date="1390379622000" expanded="true" signature="826:862" placeholder="SELECT * FRO..projects..." />
+            <marker date="1390379622000" expanded="true" signature="1052:1120" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="1833:2031" placeholder="SELECT id FR..objects..." />
+            <marker date="1390379622000" expanded="true" signature="1833:1874" placeholder="SELECT id FR..objects..." />
+            <marker date="1390379622000" expanded="true" signature="2102:2156" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="2381:2434" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="3605:3630" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="3632:3686" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="4474:5683" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="4497:5683" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5063:5603" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5236:5246" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5854:5908" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="484" column="33" selection-start="8188" selection-end="8188" vertical-scroll-proportion="0.0" vertical-offset="6717" max-vertical-offset="7500">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="356" column="54" selection-start="12034" selection-end="12034" vertical-scroll-proportion="0.0" vertical-offset="5340" max-vertical-offset="10545">
+          <folding>
+            <element signature="e#6#92#0" expanded="true" />
+            <marker date="1390642270000" expanded="true" signature="888:924" placeholder="SELECT * FRO..projects..." />
+            <marker date="1390642270000" expanded="true" signature="1957:2011" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390642270000" expanded="true" signature="2236:2289" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390642270000" expanded="true" signature="6809:6863" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/object.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="124" selection-start="2404" selection-end="2404" vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="1635">
+          <folding>
+            <marker date="1390326014000" expanded="true" signature="1270:1580" placeholder="..." />
+            <marker date="1390326014000" expanded="true" signature="1304:1569" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1321:1481" placeholder="{&quot;url&quot;: &quot;object-ajax.php&quot;...}" />
+            <marker date="1390326014000" expanded="true" signature="1400:1471" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1502:1561" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1684:1738" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="5" selection-start="432" selection-end="776" vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1155">
+          <folding>
+            <marker date="1390321147000" expanded="true" signature="453:521" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390321147000" expanded="true" signature="983:1038" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="86" selection-start="1743" selection-end="1743" vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1230">
+          <folding>
+            <marker date="1390326129000" expanded="false" signature="1472:1484" placeholder="..." />
+            <marker date="1390326129000" expanded="true" signature="1684:1743" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="442" column="0" selection-start="9448" selection-end="10126" vertical-scroll-proportion="0.0" vertical-offset="6454" max-vertical-offset="7080">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/review.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="8" selection-start="992" selection-end="1439" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="3465">
+          <folding>
+            <marker date="1390379622000" expanded="true" signature="826:862" placeholder="SELECT * FRO..projects..." />
+            <marker date="1390379622000" expanded="true" signature="1052:1120" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="1833:2031" placeholder="SELECT id FR..objects..." />
+            <marker date="1390379622000" expanded="true" signature="1833:1874" placeholder="SELECT id FR..objects..." />
+            <marker date="1390379622000" expanded="true" signature="2102:2156" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="2381:2434" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="3605:3630" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="3632:3686" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="4474:5683" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="4497:5683" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5063:5603" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5236:5246" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5854:5908" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="484" column="33" selection-start="8188" selection-end="8188" vertical-scroll-proportion="0.0" vertical-offset="6717" max-vertical-offset="7500">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="512" column="67" selection-start="19416" selection-end="19416" vertical-scroll-proportion="0.0" vertical-offset="2800" max-vertical-offset="10290">
+          <folding>
+            <element signature="e#6#92#0" expanded="true" />
+            <marker date="1390642270000" expanded="true" signature="888:924" placeholder="SELECT * FRO..projects..." />
+            <marker date="1390642270000" expanded="true" signature="1957:2011" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390642270000" expanded="true" signature="2236:2289" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390642270000" expanded="true" signature="6809:6863" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/object.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="124" selection-start="2404" selection-end="2404" vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="1635">
+          <folding>
+            <marker date="1390326014000" expanded="true" signature="1270:1580" placeholder="..." />
+            <marker date="1390326014000" expanded="true" signature="1304:1569" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1321:1481" placeholder="{&quot;url&quot;: &quot;object-ajax.php&quot;...}" />
+            <marker date="1390326014000" expanded="true" signature="1400:1471" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1502:1561" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1684:1738" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="5" selection-start="432" selection-end="776" vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1155">
+          <folding>
+            <marker date="1390321147000" expanded="true" signature="453:521" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390321147000" expanded="true" signature="983:1038" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="86" selection-start="1743" selection-end="1743" vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1230">
+          <folding>
+            <marker date="1390326129000" expanded="false" signature="1472:1484" placeholder="..." />
+            <marker date="1390326129000" expanded="true" signature="1684:1743" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="442" column="0" selection-start="9448" selection-end="10126" vertical-scroll-proportion="0.0" vertical-offset="6454" max-vertical-offset="7080">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/review.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="8" selection-start="992" selection-end="1439" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="3465">
+          <folding>
+            <marker date="1390379622000" expanded="true" signature="826:862" placeholder="SELECT * FRO..projects..." />
+            <marker date="1390379622000" expanded="true" signature="1052:1120" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="1833:2031" placeholder="SELECT id FR..objects..." />
+            <marker date="1390379622000" expanded="true" signature="1833:1874" placeholder="SELECT id FR..objects..." />
+            <marker date="1390379622000" expanded="true" signature="2102:2156" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="2381:2434" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="3605:3630" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="3632:3686" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="4474:5683" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="4497:5683" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5063:5603" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5236:5246" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5854:5908" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="484" column="33" selection-start="8188" selection-end="8188" vertical-scroll-proportion="0.0" vertical-offset="6717" max-vertical-offset="7500">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="512" column="67" selection-start="19416" selection-end="19416" vertical-scroll-proportion="0.0" vertical-offset="7315" max-vertical-offset="10290">
+          <folding>
+            <element signature="e#6#92#0" expanded="true" />
+            <marker date="1390642270000" expanded="true" signature="888:924" placeholder="SELECT * FRO..projects..." />
+            <marker date="1390642270000" expanded="true" signature="1957:2011" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390642270000" expanded="true" signature="2236:2289" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390642270000" expanded="true" signature="6809:6863" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/object.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="124" selection-start="2404" selection-end="2404" vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="1635">
+          <folding>
+            <marker date="1390326014000" expanded="true" signature="1270:1580" placeholder="..." />
+            <marker date="1390326014000" expanded="true" signature="1304:1569" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1321:1481" placeholder="{&quot;url&quot;: &quot;object-ajax.php&quot;...}" />
+            <marker date="1390326014000" expanded="true" signature="1400:1471" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1502:1561" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1684:1738" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="5" selection-start="432" selection-end="776" vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1155">
+          <folding>
+            <marker date="1390321147000" expanded="true" signature="453:521" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390321147000" expanded="true" signature="983:1038" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="86" selection-start="1743" selection-end="1743" vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1230">
+          <folding>
+            <marker date="1390326129000" expanded="false" signature="1472:1484" placeholder="..." />
+            <marker date="1390326129000" expanded="true" signature="1684:1743" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="62" selection-start="2442" selection-end="2442" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7080">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/review.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="118" column="44" selection-start="2915" selection-end="2915" vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="2970">
+          <folding>
+            <marker date="1390379622000" expanded="true" signature="826:862" placeholder="SELECT * FRO..projects..." />
+            <marker date="1390379622000" expanded="true" signature="1052:1120" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="1833:2031" placeholder="SELECT id FR..objects..." />
+            <marker date="1390379622000" expanded="true" signature="1833:1874" placeholder="SELECT id FR..objects..." />
+            <marker date="1390379622000" expanded="true" signature="2102:2156" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="2381:2434" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="3605:3630" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="3632:3686" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="4474:5683" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="4497:5683" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5063:5603" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5236:5246" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5854:5908" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/object.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="124" selection-start="2404" selection-end="2404" vertical-scroll-proportion="0.0" vertical-offset="996" max-vertical-offset="1635">
+          <folding>
+            <marker date="1390326014000" expanded="true" signature="1270:1580" placeholder="..." />
+            <marker date="1390326014000" expanded="true" signature="1304:1569" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1321:1481" placeholder="{&quot;url&quot;: &quot;object-ajax.php&quot;...}" />
+            <marker date="1390326014000" expanded="true" signature="1400:1471" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1502:1561" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1684:1738" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="86" selection-start="1743" selection-end="1743" vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1155">
+          <folding>
+            <marker date="1390326129000" expanded="false" signature="1472:1484" placeholder="..." />
+            <marker date="1390326129000" expanded="true" signature="1684:1743" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="180" column="68" selection-start="6152" selection-end="6152" vertical-scroll-proportion="0.0" vertical-offset="2359" max-vertical-offset="9840">
+          <folding>
+            <element signature="e#6#92#0" expanded="true" />
+            <marker date="1390642270000" expanded="true" signature="888:924" placeholder="SELECT * FRO..projects..." />
+            <marker date="1390642270000" expanded="true" signature="1957:2011" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390642270000" expanded="true" signature="2236:2289" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390642270000" expanded="true" signature="6809:6863" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="463" column="22" selection-start="7876" selection-end="7876" vertical-scroll-proportion="0.0" vertical-offset="6353" max-vertical-offset="7065">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../netwirth/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1560" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../netwirth_portal/li_items.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="17" selection-start="82" selection-end="82" vertical-scroll-proportion="0.09389672" vertical-offset="0" max-vertical-offset="639" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-3.7380192" vertical-offset="2340" max-vertical-offset="4770" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="31" selection-start="181" selection-end="181" vertical-scroll-proportion="0.23474178" vertical-offset="0" max-vertical-offset="639" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/Input.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="29" selection-start="253" selection-end="253" vertical-scroll-proportion="0.325" vertical-offset="0" max-vertical-offset="4425" />
+      </provider>
+    </entry>
+    <entry file="dbDummy://db-console:/174befd0/a5f7eabe-4bc9-45f8-bc9f-4af24eb507c5/">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="617" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="39" selection-start="338" selection-end="338" vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="495" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/object-ajax.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="3" selection-start="9" selection-end="9" vertical-scroll-proportion="-0.3" vertical-offset="0" max-vertical-offset="1170" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="86" selection-start="1743" selection-end="1743" vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1230">
+          <folding>
+            <marker date="1390326129000" expanded="false" signature="1472:1484" placeholder="..." />
+            <marker date="1390326129000" expanded="true" signature="1684:1743" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="5" selection-start="432" selection-end="776" vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1155">
+          <folding>
+            <marker date="1390321147000" expanded="true" signature="453:521" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390321147000" expanded="true" signature="983:1038" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/object.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="124" selection-start="2404" selection-end="2404" vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="1635">
+          <folding>
+            <marker date="1390326014000" expanded="true" signature="1270:1580" placeholder="..." />
+            <marker date="1390326014000" expanded="true" signature="1304:1569" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1321:1481" placeholder="{&quot;url&quot;: &quot;object-ajax.php&quot;...}" />
+            <marker date="1390326014000" expanded="true" signature="1400:1471" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1502:1561" placeholder="{...}" />
+            <marker date="1390326014000" expanded="true" signature="1684:1738" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/review.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="8" selection-start="992" selection-end="1439" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="3465">
+          <folding>
+            <marker date="1390379622000" expanded="true" signature="826:862" placeholder="SELECT * FRO..projects..." />
+            <marker date="1390379622000" expanded="true" signature="1052:1120" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="1833:2031" placeholder="SELECT id FR..objects..." />
+            <marker date="1390379622000" expanded="true" signature="1833:1874" placeholder="SELECT id FR..objects..." />
+            <marker date="1390379622000" expanded="true" signature="2102:2156" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="2381:2434" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="3605:3630" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="3632:3686" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390379622000" expanded="true" signature="4474:5683" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="4497:5683" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5063:5603" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5236:5246" placeholder="..." />
+            <marker date="1390379622000" expanded="true" signature="5854:5908" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="484" column="33" selection-start="8188" selection-end="8188" vertical-scroll-proportion="0.0" vertical-offset="6717" max-vertical-offset="7500">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="431" column="26" selection-start="9396" selection-end="9396" vertical-scroll-proportion="0.0" vertical-offset="6537" max-vertical-offset="7140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="361" column="9" selection-start="12360" selection-end="12360" vertical-scroll-proportion="0.48877373" vertical-offset="5132" max-vertical-offset="10545">
+          <folding>
+            <element signature="e#6#92#0" expanded="true" />
+            <marker date="1390642270000" expanded="true" signature="888:924" placeholder="SELECT * FRO..projects..." />
+            <marker date="1390642270000" expanded="true" signature="1957:2011" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390642270000" expanded="true" signature="2236:2289" placeholder="SELECT * FRO..objects..." />
+            <marker date="1390642270000" expanded="true" signature="6809:6863" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+
