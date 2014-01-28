@@ -22,6 +22,11 @@ if ($editingRes["kind"]==4 || $editingRes["kind"]==5)
 if ($editingRes)$parent=$editingRes["parent"];
 else $parent=$_GET["parent"];
 registerInput("Parent","parent",Input::HIDDEN,$parent);
+$inc_def=1;
+if ($editingRes["kind"]==4)$inc_def=0;
+registerInput("Include in Instance","in_instance",Input::CHECKBOX,$inc_def);
+registerInput("Include in Populater","in_populate",Input::CHECKBOX,$inc_def);
+
 postInputs();
 
 start_header("Edit Project");

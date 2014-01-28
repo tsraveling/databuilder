@@ -11,6 +11,7 @@ class Input
 	const INT			= 7;
 	const GALLERY		= 8;
     const HIDDEN        = 9;
+    const CHECKBOX      = 10;
     const VARTYPE       = 20;
 
 	public $label;
@@ -40,10 +41,10 @@ class Input
 	    		if ( isset($_FILES[$this->key]) && $_FILES[$this->key]['tmp_name']!="") {
 	    		
 	    			// Grab the extension in case we need it later
-	    			$ext = strtolower(pathinfo($_FILES[$this->key]['name'], PATHINFO_EXTENSION));
+	    			// $ext = strtolower(pathinfo($_FILES[$this->key]['name'], PATHINFO_EXTENSION));
 	    			
 	    			// Grab the image data
-	    			$data = file_get_contents($_FILES[$this->key]['tmp_name']);
+	    			// $data = file_get_contents($_FILES[$this->key]['tmp_name']);
 					
 					// Calculate the filename
 					$fn = uniqid("img").".png";
@@ -62,6 +63,12 @@ class Input
 	    	case Input::INT:
 	    		$this->value = intval($_POST[$this->key]);
 	    	break;
+            case Input::CHECKBOX:
+                if (isset($_POST[$this->key]))
+                    $this->value=1;
+                else
+                    $this->value=0;
+                break;
 	    	
 	    	case Input::GALLERY:
 	    		// First, copy the image to the server
@@ -227,6 +234,11 @@ class Input
 		    	</script>
 		    	<?php
 		    break;
+            case Input::CHECKBOX:
+                echo "<input type='checkbox' name='".$this->key."'";
+                if ($def==1)echo " CHECKED";
+                echo "/>";
+                break;
             case Input::VARTYPE:
                 echo "<select name='".$this->key."'>";
                 $n=0;
