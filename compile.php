@@ -252,7 +252,7 @@ function compileObject($object) {
     $vardecoder = "";
 
     $varinstancedec = "";
-    $varinstancencode = "";
+    $varinstanceencode = "";
     $varinit = "";
 
     $vargetset = "";
@@ -276,6 +276,13 @@ function compileObject($object) {
         $varname = makeVarName($variable->title,$variable->kind);
         $varhandle = str_replace(" ","",$variable->title);
         $lowvar = strtolower($varhandle);
+
+        $idhandle = "x";
+        if ($variable->kind==7) {
+            $idhandle = makeIDHandle($variable->title);
+            if ($variable->title == "UID")
+                $idhandle = "iid";
+        }
 
         // Get the subclass type
         $varc = variableClassType($variable->kind);
@@ -315,12 +322,19 @@ function compileObject($object) {
         else $varsynth = "@synthesize ";
         $varsynth .= $varname;
 
+        // Build extra ID declaration for IDs
+        if ($variable->kind==7) {
+            $vardecs .= "    int $idhandle; // ID handle for $varname §";
+            $varprops .= "@property (assign) int $idhandle;§";
+            $varsynth .= ", $idhandle";
+        }
+
         // Build Encoder
         $varencoder .= "    [encoder encodeObject:$varname forKey:@\"$varname\"];§";
         $vardecoder .= "        if ([decoder containsValueForKey:@\"$varname\"]) $varname = [decoder decodeObjectForKey:@\"$varname\"];§";
 
         // Build instance
-        if ($variable->kind != 4) { // Arrays and UIDs don't get included in the instance function
+        if ($variable->kind != 4 && $variable->in_instance == 1) { // Arrays and UIDs don't get included in the instance function
 
             // Build instance declaration
             if ($varinstancedec=="")
@@ -334,14 +348,15 @@ function compileObject($object) {
                 $varinstancedec .= $varhandle . ":($shorthand_varc)$lowvar";
 
             // Build instance code
-            if ($variable->kind==0)$varinstancencode .= "    ret.$varname = [NSNumber numberWithInt:$lowvar];§";
-            if ($variable->kind==1)$varinstancencode .= "    ret.$varname = [NSNumber numberWithFloat:$lowvar];§";
-            if ($variable->kind==6)$varinstancencode .= "    ret.$varname = [NSNumber numberWithBool:$lowvar];§";
+            if ($variable->kind==0)$varinstanceencode .= "    ret.$varname = [NSNumber numberWithInt:$lowvar];§";
+            if ($variable->kind==1)$varinstanceencode .= "    ret.$varname = [NSNumber numberWithFloat:$lowvar];§";
+            if ($variable->kind==6)$varinstanceencode .= "    ret.$varname = [NSNumber numberWithBool:$lowvar];§";
             if ($variable->kind>1 && $variable->kind<6)
-                $varinstancencode .= "    ret.$varname = $lowvar;§";
+                $varinstanceencode .= "    ret.$varname = $lowvar;§";
 
             if ($variable->kind==7) {
-                $varinstancencode .= "    if ($lowvar != -1) ret.$varname = [NSString stringWithFormat:@\"const%i\",$lowvar];§";
+                $varinstanceencode .= "    if ($lowvar != -1) ret.$varname = [NSString stringWithFormat:@\"const%i\",$lowvar];§";
+                $varinstanceencode .= "    ret.$idhandle = $lowvar;§";
             }
         }
 
@@ -658,7 +673,7 @@ function compileObject($object) {
     fout("§".$varinstancedec."§");
     fout("{§");
     fout("    $classname* ret = [$classname instance];§");
-    fout($varinstancencode);
+    fout($varinstanceencode);
     fout("    return ret;§");
     fout("}§");
 

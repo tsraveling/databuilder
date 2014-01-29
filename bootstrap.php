@@ -436,6 +436,12 @@ function makeVarName($nm,$type)
     return $ret;
 }
 
+function makeIDHandle($nm)
+{
+    $ret .= str_replace(" ","",$nm);
+    return "id".$ret;
+}
+
 function makeClassName($nm)
 {
     $ret = "Dat";
