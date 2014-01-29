@@ -92,6 +92,32 @@ if ($editingRes) {
 endBlock();
 
 if ($editingRes) {
+    startBlock("Defaults");
+    ?>
+
+    <div id="default-box">
+
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+                url:"default-ajax.php",
+                type:"post",
+                data: {
+                    objectid:<?php echo $editingRes["id"]; ?>
+                }
+            }).done(function(data){
+                $("#default-box").html(data);
+            });
+        });
+    </script>
+
+    <?php
+    endBlock();
+}
+
+if ($editingRes) {
     // COMPILE
     startBlock("Compile");
     doLink("Review Object and Children","review.php?id=".$editingRes["project"]."#".makeClassName(objectNameForId($_GET["id"])));

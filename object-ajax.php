@@ -25,7 +25,10 @@ $stmt->bindParam(":parent",$_POST["parent"],PDO::PARAM_INT);
 $stmt->execute();
 
 while ($res = $stmt->fetch()) {
-    drawMenuRow($res->title,"variable.php?id=".$res->id,$res->id,variableType($res->kind),"<em>".$res->comments."</em>");
+    $oi = "";
+    if ($res->in_instance==1 && $res->kind != 4)$oi.="i";
+    if ($res->in_populate==1)$oi.="p";
+    drawMenuRow($res->title,"variable.php?id=".$res->id,$res->id,variableType($res->kind),"<strong>$oi</strong> <em>".$res->comments."</em>");
 }
 
 ?>

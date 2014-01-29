@@ -474,4 +474,13 @@ function recursiveObject($res)
     echo "</li>";
 }
 
+function resForID($table,$id)
+{
+    global $DBH;
+    $stmt = $DBH->prepare("SELECT * FROM $table WHERE id=:uid");
+    $stmt->bindParam(":uid",$id,PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch();
+}
+
 ?>

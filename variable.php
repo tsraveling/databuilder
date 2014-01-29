@@ -17,14 +17,15 @@ if ($editingRes["kind"]==0)
     registerInput("Defines","defines",Input::TEXTBOX,"",false);
 if ($editingRes["kind"]!=4 && $editingRes["kind"]!=5)
     registerInput("Default","defaultval",Input::TEXTFIELD,"",false);
-if ($editingRes["kind"]==4 || $editingRes["kind"]==5)
+if ($editingRes["kind"]==4 || $editingRes["kind"]==5 || ($editingRes["kind"]==7 && $editingRes["title"]!="UID"))
     registerInput("Class","class");
 if ($editingRes)$parent=$editingRes["parent"];
 else $parent=$_GET["parent"];
 registerInput("Parent","parent",Input::HIDDEN,$parent);
 $inc_def=1;
 if ($editingRes["kind"]==4)$inc_def=0;
-registerInput("Include in Instance","in_instance",Input::CHECKBOX,$inc_def);
+if ($editingRes["kind"]!=4)
+    registerInput("Include in Instance","in_instance",Input::CHECKBOX,$inc_def);
 registerInput("Include in Populater","in_populate",Input::CHECKBOX,$inc_def);
 
 postInputs();
@@ -45,7 +46,7 @@ end_header();
 
 doLink("Back to Parent","object.php?id=".$editingRes["parent"]);
 
-if ($editingRes["kind"]==4 || $editingRes["kind"]==5) {
+if ($editingRes["kind"]==4 || $editingRes["kind"]==5 || ($editingRes["kind"]==7 && $editingRes["title"]!="UID")) {
     startBlock(variableType($editingRes["kind"])." Type");
     echo "<center>";
 
@@ -56,15 +57,19 @@ if ($editingRes["kind"]==4 || $editingRes["kind"]==5) {
     $projectid = $objectparent->project;
 
     echo "<select id='class-type' style='width:200px;'>";
-    echo "<option value='UIImage'>UIImage</option>";
-    echo "<option value='TSRImage'>TSRImage</option>";
-    echo "<option value='TSRGallery'>TSRGallery</option>";
+    if ($editingRes["kind"]!=7) {
+        echo "<option value='UIImage'>UIImage</option>";
+        echo "<option value='TSRImage'>TSRImage</option>";
+        echo "<option value='TSRGallery'>TSRGallery</option>";
+    }
 
     $stmt = $DBH->prepare("SELECT * FROM objects WHERE project=:project ORDER BY title");
     $stmt->bindParam(":project",$projectid,PDO::PARAM_INT);
     $stmt->execute();
     while ($res = $stmt->fetch()) {
-        echo "<option value='".makeClassName($res->title)."'>".$res->title."</option>";
+        $cname = makeClassName($res->title);
+        if ($editingRes["kind"]==7)$cname = $res->title;
+        echo "<option value='$cname'>".$res->title."</option>";
     }
     echo "</select>";
     echo "</center>";

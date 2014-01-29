@@ -194,6 +194,10 @@ function reviewObject($object,$level) {
                 echo $varc;
         }
 
+        if ($variable->kind==7 && $variable->class!="") {
+            echo " (<a href='#Dat".$variable->class."'>".$variable->class."</a>)";
+        }
+
         if ($variable->defaultval!="") echo " = ".$variable->defaultval;
 
         if ($variable->defines!="")echo "<br/><em class='note'>#defines: ".$variable->defines."</em>";
