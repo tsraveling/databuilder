@@ -13,7 +13,6 @@ if (isset($_POST["objectid"])) {
             $newID=$res->uid+1;
     }
 
-
     // Handle special requests
     if (isset($_POST["request"])) {
 
