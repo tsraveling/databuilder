@@ -483,4 +483,41 @@ function resForID($table,$id)
     return $stmt->fetch();
 }
 
+function doTOC($project)
+{
+    global $DBH;
+    echo "<div class='contents'>";
+    $stmt=$DBH->prepare("SELECT * FROM objects WHERE parent=0 AND project=:uid ORDER BY title");
+    $stmt->bindParam(":uid",$project,PDO::PARAM_INT);
+    $stmt->execute();
+    if ($stmt->rowCount()>0) {
+        echo "<ul>";
+        while ($res = $stmt->fetch())
+        {
+            recursiveContent($res);
+        }
+        echo "</ul>";
+    }
+    echo "</div>";
+}
+
+function recursiveContent($res)
+{
+    global $DBH;
+    echo "<li><a href='object.php?id=".$res->id."'>".$res->title."</a>";
+
+    $stmt=$DBH->prepare("SELECT * FROM objects WHERE parent=:uid ORDER BY title");
+    $stmt->bindParam(":uid",$res->id,PDO::PARAM_INT);
+    $stmt->execute();
+    if ($stmt->rowCount()>0) {
+        echo "<ul>";
+        while ($sres = $stmt->fetch()) {
+            recursiveContent($sres);
+        }
+        echo "</ul>";
+    }
+
+    echo "</li>";
+}
+
 ?>

@@ -252,7 +252,7 @@ if (isset($_POST["objectid"])) {
 
                 targetrow.removeClass("open");
                 if (defaultid == "new") {
-                   // reloadSelf();
+                    reloadSelf();
                 }
             });
         }

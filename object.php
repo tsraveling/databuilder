@@ -16,6 +16,7 @@ if (isset($_GET["parent"]))$defparent=$_GET["parent"];
 
 $defproject = 0;
 if (isset($_GET["project"]))$defproject=$_GET["project"];
+if ($editingRes)$defproject = $editingRes["project"];
 
 registerInput("Parent","parent",Input::HIDDEN,$defparent);
 registerInput("Project","project",INPUT::HIDDEN,$defproject);
@@ -26,6 +27,8 @@ end_header();
 
 if ($editingRes)$objectname=$editingRes["title"];
 else $objectname = "New Object";
+
+doTOC($defproject);
 
 startBlock($objectname);
 

@@ -44,17 +44,19 @@ start_header("Edit Project");
 <?php
 end_header();
 
+$stmt = $DBH->prepare("SELECT * FROM objects WHERE id=".$parent);
+$stmt->execute();
+$objectparent = $stmt->fetch();
+$projectid = $objectparent->project;
+
+doTOC($projectid);
+
 doLink("Back to Parent","object.php?id=".$editingRes["parent"]);
 
 if ($editingRes["kind"]==4 || $editingRes["kind"]==5 || ($editingRes["kind"]==7 && $editingRes["title"]!="UID")) {
+
     startBlock(variableType($editingRes["kind"])." Type");
     echo "<center>";
-
-
-    $stmt = $DBH->prepare("SELECT * FROM objects WHERE id=".$parent);
-    $stmt->execute();
-    $objectparent = $stmt->fetch();
-    $projectid = $objectparent->project;
 
     echo "<select id='class-type' style='width:200px;'>";
     if ($editingRes["kind"]!=7) {
