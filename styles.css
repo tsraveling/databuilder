@@ -541,3 +541,11 @@ em.note {
 #default-box div.var-row span.input-span select {
     width: 80%;
 }
+
+#default-box div.var-row span.subob input {
+    width: 60%;
+}
+
+#default-box div.var-row span.subob select {
+    width: 60%;
+}

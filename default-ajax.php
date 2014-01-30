@@ -19,8 +19,14 @@ if (isset($_POST["objectid"])) {
 
         // Grab the form for a given row
         if ($_POST["request"] == "rowform") {
+            $varpar="";
+            $defpar="";
+            if (isset($_POST["varpar"])) {
+                $varpar = $_POST["varpar"];
+                $defpar = $_POST["defpar"];
+            }
             $defaultid = $_POST["defaultid"];
-            echo buildForm($_POST["objectid"],$defaultid);
+            echo buildForm($_POST["objectid"],$defaultid,$varpar,$defpar);
         }
 
         // Fill a row with its default
@@ -50,6 +56,8 @@ if (isset($_POST["objectid"])) {
             $objectid = $_POST["objectid"];
             $defaultid = $_POST["defaultid"];
             $formvalues = $_POST["formvalues"];
+            $defpar = $_POST["defpar"];
+            $varpar = $_POST["varpar"];
             $vals = json_decode($formvalues,true);
 
             $title = "";
@@ -58,9 +66,17 @@ if (isset($_POST["objectid"])) {
 
             // If this is a new default, insert it into the db and get the id
             if ($defaultid == "new") {
-                $stmt = $DBH->prepare("INSERT INTO defaults (parent_object) VALUES (:parob)");
-                $stmt->bindParam(":parob",$objectid,PDO::PARAM_INT);
-                $stmt->execute();
+
+                if ($defpar == -1) {
+                    $stmt = $DBH->prepare("INSERT INTO defaults (parent_object) VALUES (:parob)");
+                    $stmt->bindParam(":parob",$objectid,PDO::PARAM_INT);
+                    $stmt->execute();
+                } else {
+                    $stmt = $DBH->prepare("INSERT INTO defaults (parent_default,parent_variable) VALUES (:defpar,:varpar)");
+                    $stmt->bindParam(":defpar",$defpar,PDO::PARAM_INT);
+                    $stmt->bindParam(":varpar",$varpar,PDO::PARAM_INT);
+                    $stmt->execute();
+                }
 
                 $defaultid = $DBH->lastInsertId();
             }
@@ -75,9 +91,9 @@ if (isset($_POST["objectid"])) {
 
                 $varid = intval($val["varid"]);
 
-                $stmt = $DBH->prepare("INSERT INTO defaultvar (parent_default,parent_var,val) VALUES (:pardef,:parvar,:val)");
+                $stmt = $DBH->prepare("INSERT INTO defaultvar (parent_default,parent_var,val) VALUES (:pardef,:varpar,:val)");
                 $stmt->bindParam(":pardef",$defaultid,PDO::PARAM_INT);
-                $stmt->bindParam(":parvar",$varid,PDO::PARAM_INT);
+                $stmt->bindParam(":varpar",$varid,PDO::PARAM_INT);
                 $stmt->bindParam(":val",$val["value"],PDO::PARAM_STR);
                 $stmt->execute();
 
@@ -129,6 +145,8 @@ if (isset($_POST["objectid"])) {
                     th.removeClass("open");
                 });
             });
+
+            $("#new-subob").remove();
         }
 
         function reloadSelf()
@@ -144,8 +162,36 @@ if (isset($_POST["objectid"])) {
                 });
         }
 
+        function addSubobject(pardef,varpar)
+        {
+            // Stop the mouse propagation
+            var event = arguments[2] || window.event;
+            event.stopPropagation();
+
+            // Get rid of other views
+            deselectForms();
+
+            // Insert the form
+            var html = "<div class='var-row' id='new-subob' objectid='<?php echo $_POST["objectid"]; ?>' defpar='"+pardef+"' varpar='"+parvar+"' defaultid='new'>x</div>";
+            $("#def_"+pardef).after(html);
+            var newrow = $("#new-subob");
+            ajaxFill(newrow,{
+                request:"rowform",
+                objectid:newrow.attr("objectid"),
+                defaultid:newrow.attr("defaultid"),
+                varpar:varpar,
+                defpar:pardef
+            },function(){
+                // findme
+            });
+        }
+
         function deleteDefault(defid)
         {
+            // Stop the mouse propagation
+            var event = arguments[2] || window.event;
+            event.stopPropagation();
+
             if (confirm("Are you sure you want to delete this item?")) {
                 $.ajax({
                     url:"default-ajax.php",
@@ -186,11 +232,15 @@ if (isset($_POST["objectid"])) {
 
             // Grab the default id
             var defaultid = parentrow.attr("defaultid");
+            var defpar = parentrow.attr("defpar");
+            var varpar = parentrow.attr("varpar");
 
             // Compile the data
             var data = {
                 request:"saverow",
                 objectid:parentrow.attr("objectid"),
+                defpar:defpar,
+                varpar:varpar,
                 defaultid:defaultid,
                 formvalues:JSON.stringify(formvalues)
             };
@@ -203,7 +253,7 @@ if (isset($_POST["objectid"])) {
 
                 targetrow.removeClass("open");
                 if (defaultid == "new") {
-                    reloadSelf();
+                   // reloadSelf();
                 }
             });
         }
@@ -220,6 +270,8 @@ if (isset($_POST["objectid"])) {
                 var th = $(this);
                 var objectid = $(this).attr("objectid");
                 var defaultid = $(this).attr("defaultid");
+                var defpar = $(this).attr("defpar");
+                var varpar = $(this).attr("varpar");
                 if (!$(this).hasClass("open")) {
 
                     // First close other forms
@@ -231,7 +283,9 @@ if (isset($_POST["objectid"])) {
                     ajaxFill(th,{
                         objectid:objectid,
                         request:"rowform",
-                        defaultid:defaultid
+                        defaultid:defaultid,
+                        defpar:defpar,
+                        varpar:varpar
                     },function(){
                         th.addClass("open");
                         th.find("input").first().focus();
@@ -290,10 +344,9 @@ if (isset($_POST["objectid"])) {
     $stmt->bindParam(":objectid",$objectid,PDO::PARAM_INT);
     $stmt->execute();
     while ($res = $stmt->fetch()) {
-        openRow("def_".$res->id,$res->id);
-        buildRow($objectid,$res->id);
-        closeRow();
+        recursiveDefault($res);
         $newID ++;
+
     }
 
     openRow("new-default","new");
@@ -304,10 +357,28 @@ if (isset($_POST["objectid"])) {
     echo "<em>No object supplied.</em>";
 }
 
+// Recursive build defaults
+function recursiveDefault($res)
+{
+    global $objectid,$DBH;
+    openRow("def_".$res->id,$res->id,$res->parent_default,$res->parent_variable);
+    buildRow($objectid,$res->id);
+    closeRow();
+
+    $stmt = $DBH->prepare("SELECT * FROM defaults WHERE parent_default=:pardef ORDER BY parent_variable");
+    $stmt->bindParam(":pardef",$res->id,PDO::PARAM_INT);
+    $stmt->execute();
+
+    while ($subres = $stmt->fetch()) {
+        recursiveDefault($subres);
+    }
+
+}
+
 // Builds a form for a row
 
 $formsBuilt = 0;
-function buildForm($objectid,$defaultid)
+function buildForm($objectid,$defaultid,$varpar="",$defpar="")
 {
     global $DBH,$formsBuilt,$newID;
     $formsBuilt++;
@@ -317,10 +388,25 @@ function buildForm($objectid,$defaultid)
     if ($defaultid!="new")
         $default = resForID("defaults",$defaultid);
 
+    $variable = null;
+    if ($default)$varpar = $default->parent_variable;
+    if ($varpar!="" && $varpar!="0" && $varpar!="-1") {
+        $variable = resForID("variables",$varpar);
+        echo "<span class='input-span'> -> ".makeVarName($variable->title,$variable->kind)."</span>";
+        $stmt = $DBH->prepare("SELECT * FROM objects WHERE project=:project");
+        $stmt->bindParam(":project",$object->project,PDO::PARAM_STR);
+        $stmt->execute();
+        while ($res = $stmt->fetch()) {
+            if ($variable->class == makeClassName($res->title)) {
+                $object = $res;
+                break;
+            }
+        }
+    }
+
     $stmt = $DBH->prepare("SELECT * FROM variables WHERE parent = :oid");
-    $stmt->bindParam(":oid",$objectid,PDO::PARAM_INT);
+    $stmt->bindParam(":oid",$object->id,PDO::PARAM_INT);
     $stmt->execute();
-    $first = true;
     while ($res = $stmt->fetch())
     {
         if ($res->in_populate == 1) {
@@ -341,9 +427,16 @@ function buildForm($objectid,$defaultid)
             $varname = makeVarName($res->title,$res->kind);
             $varid = $res->id;
 
-            echo "<span class='input-span'";
-            if ($res->kind==7&&$res->title=="UID")echo "style='width:40px;'";
+            echo "<span class='input-span";
+            if ($variable)echo " subob";
+            echo "'";
+            if ($variable)echo "style='width:150px;'";
+            else {
+                if ($res->kind==7&&$res->title=="UID")echo "style='width:40px;'";
+            }
             echo ">";
+            if ($variable)echo $res->title.": ";
+
             switch($res->kind) {
                 case 4:
                     echo "<input class='form-field' type='hidden' vartype='4' id='$varname' varid='$varid' value='Array'/>";
@@ -399,6 +492,22 @@ function buildRow($objectid,$defaultid)
         echo "<div style='width:100%;text-align:center;'>+</div>";
     } else {
         $default = resForID("defaults",$defaultid);
+        $object = resForID("objects",$objectid);
+
+        if ($default->parent_default>0) {
+            $varpar = $default->parent_variable;
+            $variable = resForID("variables",$varpar);
+            echo "<span class='input-span'> -> ".makeVarName($variable->title,$variable->kind)."</span>";
+            $stmt = $DBH->prepare("SELECT * FROM objects WHERE project=:project");
+            $stmt->bindParam(":project",$object->project,PDO::PARAM_STR);
+            $stmt->execute();
+            while ($res = $stmt->fetch()) {
+                if ($variable->class == makeClassName($res->title)) {
+                    $object = $res;
+                    break;
+                }
+            }
+        }
 
         $stmt = $DBH->prepare("SELECT * FROM defaultvar WHERE parent_default=:did");
         $stmt->bindParam(":did",$defaultid,PDO::PARAM_INT);
@@ -425,7 +534,7 @@ function buildRow($objectid,$defaultid)
             } else {
 
                 if ($var->kind==4) {
-                    echo "<strong>(+)</strong>";
+                    echo "<span onclick='addSubobject($defaultid,".$var->id.")'><strong>(+)</strong></span>";
                 } else
                     echo $res->val;
             }
@@ -439,11 +548,14 @@ function buildRow($objectid,$defaultid)
 
 // Row wrappers
 
-function openRow($id,$defaultid,$objectid="",$style="")
+function openRow($id,$defaultid,$objectid="",$defpar="-1",$varpar="-1",$style="")
 {
+    if ($defpar==0)$defpar="-1";
+    if ($varpar==0)$varpar="-1";
     if ($objectid == "")$objectid = $_POST["objectid"];
+    $objectid = $_POST["objectid"];
 
-    echo "<div class='var-row' id='$id' objectid='$objectid' defaultid='$defaultid' style='$style'>";
+    echo "<div class='var-row' id='$id' objectid='$objectid' defpar='$defpar' varpar='$varpar' defaultid='$defaultid' style='$style'>";
 }
 
 function closeRow()
