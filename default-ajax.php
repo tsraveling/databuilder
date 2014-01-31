@@ -318,8 +318,6 @@ if (isset($_POST["objectid"])) {
 
     <?php
 
-
-
     $objectid = $_POST["objectid"];
     $object = resForID("objects",$objectid);
 

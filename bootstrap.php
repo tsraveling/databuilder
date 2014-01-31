@@ -438,7 +438,7 @@ function makeVarName($nm,$type)
 
 function makeIDHandle($nm)
 {
-    $ret .= str_replace(" ","",$nm);
+    $ret = str_replace(" ","",$nm);
     return "id".$ret;
 }
 
@@ -518,6 +518,14 @@ function recursiveContent($res)
     }
 
     echo "</li>";
+}
+
+function handleFromTitle($title)
+{
+    $title = str_replace(" ","",$title);
+    $title = str_replace("&","",$title);
+    $title = str_replace(".","",$title);
+    return $title;
 }
 
 ?>

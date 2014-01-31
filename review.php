@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
             echo "<ul>";
             while ($res = $stmt->fetch())
             {
-                recursiveContent($res);
+                recursiveReviewContent($res);
             }
             echo "</ul>";
         }
@@ -206,7 +206,7 @@ function reviewObject($object,$level) {
     echo "</table>";
 }
 
-function recursiveContent($res)
+function recursiveReviewContent($res)
 {
     global $DBH;
     echo "<li><a href='#".makeClassName($res->title)."'>".$res->title."</a>";
@@ -217,7 +217,7 @@ function recursiveContent($res)
     if ($stmt->rowCount()>0) {
         echo "<ul>";
         while ($sres = $stmt->fetch()) {
-            recursiveContent($sres);
+            recursiveReviewContent($sres);
         }
         echo "</ul>";
     }

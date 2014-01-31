@@ -17,6 +17,10 @@ $projectName="Invalid";
 $projectCopyright="None";
 $today = date("F j, Y");
 
+$definesFile = "";
+$populaterHeader = "";
+$populaterCode = "";
+
 $fileOut = null;
 
 function fout($tx)
@@ -185,6 +189,26 @@ if (isset($_GET["id"])) {
             endBlock();
         }
 
+        startBlock("Data Population");
+
+        // Output the defines for data population
+
+        lout("Outputting DataDefines.h");
+        $fname = "DataDefines.h";
+        $fpath = $dirPath.$fname;
+        $fileOut = fopen($fpath,"w");
+
+        fout(makeFileHeader($fname));
+
+        fout("§#ifndef ".$projectName."_DataDefines_h§");
+        fout("#define ".$projectName."_DataDefines_h§");
+        fout($definesFile);
+        fout("§#endif");
+
+        fclose($fileOut);
+
+        endBlock();
+
         startBlock("Complete!");
         if (isset($_GET["object"]))
             doLink("Back to object","object.php?id=".$_GET["object"]);
@@ -219,7 +243,9 @@ function recursiveCompile($res)
 }
 
 function compileObject($object) {
-    global $DBH,$fileOut,$dirPath;
+    global $DBH,$fileOut,$dirPath,$definesFile,$populaterHeader,$populaterCode;
+
+    // Build files
 
     $dfInsert = "@\"yyyy-MM-dd\"";
 
@@ -727,7 +753,43 @@ function compileObject($object) {
 
     fclose($fileOut);
 
+    // Data population
+
+    $stmt = $DBH->prepare("SELECT * FROM defaults WHERE parent_object=:oid");
+    $stmt->bindParam(":oid",$object->id,PDO::PARAM_INT);
+    $stmt->execute();
+
+    if ($stmt->rowCount()>0) {
+        // Set up Global Defines file
+        $objecthandle = handleFromTitle($object->title);
+        $objectname = $object->title;
+        $definesFile .= "§// $objectname Defines§";
+        $definesFile .= "§".defineWith("kCount$objecthandle",$stmt->rowCount())."§";
+
+        while ($res = $stmt->fetch()) {
+            $defaulthandle = handleFromTitle($res->title);
+
+            // Add defines
+            $definesFile .= defineWith("k$objecthandle$defaulthandle",$res->uid);
+        }
+
+        // Set up Populater Header
+
+        // Set up Populater Code
+    }
+
     endBlock();
+}
+
+function defineWith($tag,$val)
+{
+    $tx = "#define $tag";
+
+    $add = "";
+    for ($i=0;$i<40-strlen($tx);$i++) {
+        $add.=" ";
+    }
+    return $tx.$add.$val."§";
 }
 
 do_footer();
