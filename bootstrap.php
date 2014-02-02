@@ -438,6 +438,7 @@ function makeVarName($nm,$type)
 
 function makeIDHandle($nm)
 {
+    if ($nm=="UID")return "iid";
     $ret = str_replace(" ","",$nm);
     return "id".$ret;
 }

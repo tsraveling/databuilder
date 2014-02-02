@@ -207,6 +207,44 @@ if (isset($_GET["id"])) {
 
         fclose($fileOut);
 
+
+        // Output DataPopulation.h
+
+        lout("Outputting DataPopulation.h");
+        $fname = "DataPopulation.h";
+        $fpath = $dirPath.$fname;
+        $fileOut = fopen($fpath,"w");
+
+        fout(makeFileHeader($fname));
+
+        fout("§#import <Foundation/Foundation.h>§");
+        fout("#import \"DataManager.h\"§");
+        fout("§@interface DataPopulation : NSObject§§");
+        fout($populaterHeader);
+        fout("§+(void)populateData:(DataManager*)data;§");
+        fout("§§@end");
+
+        fclose($fileOut);
+
+
+        // Output DataPopulation.m
+
+        lout("Outputting DataPopulation.m");
+        $fname = "DataPopulation.m";
+        $fpath = $dirPath.$fname;
+        $fileOut = fopen($fpath,"w");
+
+        fout(makeFileHeader($fname));
+
+        fout("§#import \"DataPopulation.h\"§");
+        fout("§@implementation DataPopulation§");
+        fout($populaterCode);
+        fout("§+(void)populateData:(DataManager*)data§");
+        fout("{§}§");
+        fout("§@end");
+
+        fclose($fileOut);
+
         endBlock();
 
         startBlock("Complete!");
@@ -250,9 +288,11 @@ function compileObject($object) {
     $dfInsert = "@\"yyyy-MM-dd\"";
 
     $classname = makeClassName($object->title);
+    $classhandle = handleFromTitle($object->title);
 
     startBlock($object->title);
     lout("Class Name: ".$classname);
+
 
     ///////// BUILD .H FILE //////////
 
@@ -760,6 +800,15 @@ function compileObject($object) {
     $stmt->execute();
 
     if ($stmt->rowCount()>0) {
+
+        // Start population function
+        $populaterHeader .= "-(NSMutableArray*)getPopulated$classhandle"."Array;§";
+        $populaterCode .= "§// Populater function for ".$object->title."§";
+        $populaterCode .=  "-(NSMutableArray*)getPopulated$classhandle"."Array§";
+        $populaterCode .= "{§";
+        $populaterCode .= "    NSMutableArray *ar = [[NSMutableArray alloc] init];§";
+        $populaterCode .= "    $classname *ob;§";
+
         // Set up Global Defines file
         $objecthandle = handleFromTitle($object->title);
         $objectname = $object->title;
@@ -771,12 +820,40 @@ function compileObject($object) {
 
             // Add defines
             $definesFile .= defineWith("k$objecthandle$defaulthandle",$res->uid);
+
+            // Populater Code
+
+            $populaterCode .= "§    // ".$res->title."§";
+            $populaterCode .= "    ob = [$classname instance];§";
+            $varstmt = $DBH->prepare("SELECT * FROM defaultvar WHERE parent_default=:pid");
+            $varstmt->bindParam(":pid",$res->id,PDO::PARAM_INT);
+            $varstmt->execute();
+            while ($varres = $varstmt->fetch()) {
+                $variable = resForID("variables",$varres->parent_var);
+                if ($variable && ($variable->kind<3 || $variable->kind==6 || $variable->kind==7)) {
+                    $populaterCode .= "    ob.".makeVarName($variable->title,$variable->kind)." = ";
+                    if ($variable->kind==0) $populaterCode .= "[NSNumber numberWithInt:".$varres->val."];§";
+                    if ($variable->kind==1) $populaterCode .= "[NSNumber numberWithFloat:".$varres->val."];§";
+                    if ($variable->kind==2) $populaterCode .= "@\"".$varres->val."\";§";
+                    if ($variable->kind==6) $populaterCode .= "[NSNumber numberWithBool:".$varres->val."];§";
+                    if ($variable->kind==7) {
+                        $populaterCode .= "@\"const".$varres->val."\";§";
+                        $populaterCode .= "    ob.".makeIDHandle($variable->title)." = ".$varres->val.";§";
+                    }
+                }
+            }
+            $populaterCode .= "    [ar addObject:ob];§";
+
+            $substmt = $DBH->prepare("SELECT * FROM defaults WHERE parent_default=:pid");
+            $substmt->bindParam(":pid",$res->id,PDO::PARAM_INT);
+            $substmt->execute();
+
         }
-
-        // Set up Populater Header
-
-        // Set up Populater Code
     }
+
+    // Population Wrapup
+    $populaterCode .= "    return ar;§";
+    $populaterCode .= "}§";
 
     endBlock();
 }
