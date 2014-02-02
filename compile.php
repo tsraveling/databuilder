@@ -57,6 +57,10 @@ if (isset($_GET["id"])) {
 
     if ($project = $stmt->fetch()) {
 
+        // Generate the define library
+        generateDefineKeys();
+
+        // Continue ...
         $projectName = $project->title;
         $projectCopyright = $project->copyright;
         $dirPath = "/Users/tsraveling/Documents/DataBuilder/".str_replace(" ","_",$project->title)."/";
@@ -263,6 +267,42 @@ if (isset($_GET["id"])) {
     echo "Invalid.";
 }
 
+$defineArray = array();
+function generateDefineKeys()
+{
+    global $DBH,$defineArray;
+    $stmt = $DBH->prepare("SELECT * FROM objects");
+    $stmt->execute();
+    while ($object = $stmt->fetch()) {
+        $dstmt = $DBH->prepare("SELECT * FROM defaults WHERE parent_object=:oid");
+        $dstmt->bindParam(":oid",$object->id,PDO::PARAM_INT);
+        $dstmt->execute();
+
+        if ($dstmt->rowCount()>0) {
+
+            // Set up Global Defines file
+            $objecthandle = handleFromTitle($object->title);
+            while ($dres = $dstmt->fetch()) {
+                $defaulthandle = handleFromTitle($dres->title);
+                $defname = "k$objecthandle$defaulthandle";
+                $defineArray[$object->title][$dres->uid] = $defname;
+            }
+        }
+    }
+}
+
+function defineKey($objectname,$uid)
+{
+    global $defineArray;
+    if (isset($defineArray[$objectname][$uid]))
+    {
+        $val = $defineArray[$objectname][$uid];
+        if ($val && $val != "")
+            return $val;
+    }
+    return $uid;
+}
+
 function recursiveCompile($res)
 {
     global $DBH;
@@ -281,7 +321,7 @@ function recursiveCompile($res)
 }
 
 function compileObject($object) {
-    global $DBH,$fileOut,$dirPath,$definesFile,$populaterHeader,$populaterCode;
+    global $DBH,$fileOut,$dirPath,$definesFile,$populaterHeader,$populaterCode,$defineArray;
 
     // Build files
 
@@ -815,6 +855,7 @@ function compileObject($object) {
         $definesFile .= "§// $objectname Defines§";
         $definesFile .= "§".defineWith("kCount$objecthandle",$stmt->rowCount())."§";
 
+        $n=0;
         while ($res = $stmt->fetch()) {
             $defaulthandle = handleFromTitle($res->title);
 
@@ -831,23 +872,48 @@ function compileObject($object) {
             while ($varres = $varstmt->fetch()) {
                 $variable = resForID("variables",$varres->parent_var);
                 if ($variable && ($variable->kind<3 || $variable->kind==6 || $variable->kind==7)) {
-                    $populaterCode .= "    ob.".makeVarName($variable->title,$variable->kind)." = ";
-                    if ($variable->kind==0) $populaterCode .= "[NSNumber numberWithInt:".$varres->val."];§";
-                    if ($variable->kind==1) $populaterCode .= "[NSNumber numberWithFloat:".$varres->val."];§";
-                    if ($variable->kind==2) $populaterCode .= "@\"".$varres->val."\";§";
-                    if ($variable->kind==6) $populaterCode .= "[NSNumber numberWithBool:".$varres->val."];§";
+                    $populaterCode .= "    ob.".makeVarName($variable->title,$variable->kind)." = ".populatorWith($variable->kind,$varres->val).";§";
                     if ($variable->kind==7) {
-                        $populaterCode .= "@\"const".$varres->val."\";§";
-                        $populaterCode .= "    ob.".makeIDHandle($variable->title)." = ".$varres->val.";§";
+                        $populaterCode .= "    ob.".makeIDHandle($variable->title)." = ";
+                        if ($variable->title=="UID")
+                            $populaterCode .= defineKey($objectname,$varres->val).";§";
+                        else
+                            $populaterCode .= defineKey($variable->class,$varres->val).";§";
                     }
+
+
                 }
             }
-            $populaterCode .= "    [ar addObject:ob];§";
 
             $substmt = $DBH->prepare("SELECT * FROM defaults WHERE parent_default=:pid");
             $substmt->bindParam(":pid",$res->id,PDO::PARAM_INT);
             $substmt->execute();
 
+            while ($subres = $substmt->fetch()) {
+                $subvar = resForID("variables",$subres->parent_variable);
+                $varname = makeVarName($subvar->title,$subvar->kind);
+                $varclass = $subvar->class;
+                $subobname  = "subob$n";
+                $populaterCode .= "§    $varclass *$subobname = [$varclass instance];§";
+
+                $varstmt = $DBH->prepare("SELECT * FROM defaultvar WHERE parent_default=:pid");
+                $varstmt->bindParam(":pid",$subres->id,PDO::PARAM_INT);
+                $varstmt->execute();
+                while ($varres = $varstmt->fetch()) {
+                    $subobvar = resForID("variables",$varres->parent_var);
+                    $subvarname = makeVarName($subobvar->title,$subobvar->kind);
+                    $populaterCode .= "    $subobname.$subvarname = ". populatorWith($subobvar->kind,$varres->val).";§";
+                    if ($subobvar->kind==7) {
+                        $populaterCode .= "    $subobname.".makeIDHandle($subobvar->title)." = ".defineKey($subobvar->title,$varres->val).";§";
+                    }
+
+                }
+
+                $populaterCode .= "    [ob.$varname addObject:$subobname];§";
+                $n++;
+            }
+
+            $populaterCode .= "    [ar addObject:ob];§";
         }
     }
 

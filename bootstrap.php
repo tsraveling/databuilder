@@ -529,4 +529,17 @@ function handleFromTitle($title)
     return $title;
 }
 
+function populatorWith($kind,$val)
+{
+    if ($kind==0) return "[NSNumber numberWithInt:".$val."]";
+    if ($kind==1) return "[NSNumber numberWithFloat:".$val."]";
+    if ($kind==2) return "@\"".$val."\"";
+    if ($kind==6) return "[NSNumber numberWithBool:".$val."]";
+    if ($kind==7) {
+        return "@\"const".$val."\"";
+        // $populaterCode .= "    ob.".makeIDHandle($variable->title)." = ".$varres->val.";§";
+    }
+    return "ERROR";
+}
+
 ?>

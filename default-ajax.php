@@ -171,7 +171,7 @@ if (isset($_POST["objectid"])) {
             deselectForms();
 
             // Insert the form
-            var html = "<div class='var-row' id='new-subob' objectid='<?php echo $_POST["objectid"]; ?>' defpar='"+pardef+"' varpar='"+parvar+"' defaultid='new'>x</div>";
+            var html = "<div class='var-row' id='new-subob' objectid='<?php echo $_POST["objectid"]; ?>' defpar='"+pardef+"' varpar='"+varpar+"' defaultid='new'>x</div>";
             $("#def_"+pardef).after(html);
             var newrow = $("#new-subob");
             ajaxFill(newrow,{
