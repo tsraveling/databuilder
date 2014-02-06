@@ -181,7 +181,7 @@ if (isset($_POST["objectid"])) {
                 varpar:varpar,
                 defpar:pardef
             },function(){
-                // findme
+                newrow.find("input, select").first().focus();
             });
         }
 
@@ -287,7 +287,7 @@ if (isset($_POST["objectid"])) {
                         varpar:varpar
                     },function(){
                         th.addClass("open");
-                        th.find("input").first().focus();
+                        th.find("input, select").first().focus();
                     });
 
                 }
@@ -409,7 +409,7 @@ function buildForm($objectid,$defaultid,$varpar="",$defpar="")
         if ($res->in_populate == 1) {
 
             // First find the default value
-            $defval = "";
+            $defval = $res->defaultval;
             if ($default) {
                 $defstmt = $DBH->prepare("SELECT * FROM defaultvar WHERE parent_default=:parid AND parent_var=:varid");
                 $defstmt->bindParam("parid",$default->id,PDO::PARAM_INT);
@@ -417,7 +417,7 @@ function buildForm($objectid,$defaultid,$varpar="",$defpar="")
                 $defstmt->execute();
 
                 $dval = $defstmt->fetch();
-                $defval = $dval->val;
+                if ($dval)$defval = $dval->val;
             }
 
             // Figure out the variable stuff
@@ -446,7 +446,6 @@ function buildForm($objectid,$defaultid,$varpar="",$defpar="")
                         else echo " value='$defval'";
                         echo "/>";
                     } else {
-
                         echo "<select class='form-field' id='$varname' varid='$varid'>";
                         echo "<option value='-1'";
                         if ($defval=="-1")echo " SELECTED";
@@ -457,7 +456,7 @@ function buildForm($objectid,$defaultid,$varpar="",$defpar="")
                         $obstmt->execute();
                         $varob = $obstmt->fetch();
 
-                        $sdstmt = $DBH->prepare("SELECT * FROM defaults WHERE parent_object=:oid");
+                        $sdstmt = $DBH->prepare("SELECT * FROM defaults WHERE parent_object=:oid ORDER BY title");
                         $sdstmt->bindParam(":oid",$varob->id,PDO::PARAM_INT);
                         $sdstmt->execute();
                         while ($subdef = $sdstmt->fetch()) {
@@ -494,7 +493,7 @@ function buildRow($objectid,$defaultid)
         if ($default->parent_default>0) {
             $varpar = $default->parent_variable;
             $variable = resForID("variables",$varpar);
-            echo "<span class='input-span'> -> ".makeVarName($variable->title,$variable->kind)."</span>";
+            echo "<span class='input-span'><em style='font-size:10px;color:#555;'> -> ".makeVarName($variable->title,$variable->kind)."</em></span>";
             $stmt = $DBH->prepare("SELECT * FROM objects WHERE project=:project");
             $stmt->bindParam(":project",$object->project,PDO::PARAM_STR);
             $stmt->execute();
@@ -512,30 +511,32 @@ function buildRow($objectid,$defaultid)
 
         while ($res = $stmt->fetch()) {
             $var = resForID("variables",$res->parent_var);
-            echo "<span class='input-span'";
-            if ($var->kind==7&&$var->title=="UID")echo "style='width:40px;'";
-            echo ">";
-            if ($var->kind==7 && $var->title != "UID") {
-                $obstmt = $DBH->prepare("SELECT id FROM objects WHERE title=:title");
-                $obstmt->bindParam(":title",$var->class,PDO::PARAM_STR);
-                $obstmt->execute();
-                $varob = $obstmt->fetch();
+            if ($var) {
+                echo "<span class='input-span'";
+                if ($var->kind==7&&$var->title=="UID")echo "style='width:40px;'";
+                echo ">";
+                if ($var->kind==7 && $var->title != "UID") {
+                    $obstmt = $DBH->prepare("SELECT id FROM objects WHERE title=:title");
+                    $obstmt->bindParam(":title",$var->class,PDO::PARAM_STR);
+                    $obstmt->execute();
+                    $varob = $obstmt->fetch();
 
-                $sdstmt = $DBH->prepare("SELECT * FROM defaults WHERE parent_object=:oid AND uid=:uid");
-                $sdstmt->bindParam(":oid",$varob->id,PDO::PARAM_INT);
-                $sdstmt->bindParam(":uid",$res->val,PDO::PARAM_INT);
-                $sdstmt->execute();
-                $subdef = $sdstmt->fetch();
-                echo $subdef->title;
+                    $sdstmt = $DBH->prepare("SELECT * FROM defaults WHERE parent_object=:oid AND uid=:uid");
+                    $sdstmt->bindParam(":oid",$varob->id,PDO::PARAM_INT);
+                    $sdstmt->bindParam(":uid",$res->val,PDO::PARAM_INT);
+                    $sdstmt->execute();
+                    $subdef = $sdstmt->fetch();
+                    echo $subdef->title;
 
-            } else {
+                } else {
 
-                if ($var->kind==4) {
-                    echo "<span onclick='addSubobject($defaultid,".$var->id.")'><strong>(+)</strong></span>";
-                } else
-                    echo $res->val;
+                    if ($var->kind==4) {
+                        echo "<span onclick='addSubobject($defaultid,".$var->id.")'><strong>(+)</strong></span>";
+                    } else
+                        echo $res->val;
+                }
+                echo "</span>";
             }
-            echo "</span>";
         }
 
         if ($defaultid!="new")
