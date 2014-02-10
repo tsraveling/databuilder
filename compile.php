@@ -915,11 +915,11 @@ function compileObject($object) {
 
             $populaterCode .= "    [ar addObject:ob];§";
         }
-    }
 
-    // Population Wrapup
-    $populaterCode .= "    return ar;§";
-    $populaterCode .= "}§";
+        // Population Wrapup
+        $populaterCode .= "    return ar;§";
+        $populaterCode .= "}§";
+    }
 
     endBlock();
 }
