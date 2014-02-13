@@ -76,12 +76,16 @@ if (isset($_GET["id"])) {
         if (!file_exists($dirPath)) {
             mkdir($dirPath, 0777, true);
         } else {
+
+            lout("Folder already exists, writing to it.");
+
+            /* Don't empty the folder!
             lout("Emptying the folder");
             $files = glob($dirPath."*.*"); // get all file names
             foreach($files as $file){ // iterate files
                 if(is_file($file))
                     unlink($file); // delete file
-            }
+            } */
         }
 
         endBlock();
@@ -236,6 +240,13 @@ if (isset($_GET["id"])) {
         lout("Outputting DataPopulation.m");
         $fname = "DataPopulation.m";
         $fpath = $dirPath.$fname;
+
+        if (file_exists($fpath)) {
+            $contents = file_get_contents($fpath);
+            $popcustom = getTextBetweenStrings($contents,"+(void)populateData:(DataManager*)data\n{","} // end populateData");
+        } else
+            $popcustom = "§§";
+
         $fileOut = fopen($fpath,"w");
 
         fout(makeFileHeader($fname));
@@ -244,7 +255,7 @@ if (isset($_GET["id"])) {
         fout("§@implementation DataPopulation§");
         fout($populaterCode);
         fout("§+(void)populateData:(DataManager*)data§");
-        fout("{§}§");
+        fout("{".$popcustom."} // end populateData§");
         fout("§@end");
 
         fclose($fileOut);
@@ -338,6 +349,13 @@ function compileObject($object) {
 
     $fname = $classname.".h";
     $fpath = $dirPath.$fname;
+
+    if (file_exists($fpath)) {
+        $contents = file_get_contents($fpath);
+        $headercustom = getTextBetweenStrings($contents,"// Custom","// End Custom");
+    } else
+        $headercustom = "§§";
+
     $fileOut = fopen($fpath,"w");
     lout("Opened $fname for writing.");
 
@@ -556,7 +574,7 @@ function compileObject($object) {
             $vardefineoutputdecs .= "+ (NSString*)get$varhandle"."Label:(int)i;§";
             $vardefineoutputdecs .= "- (NSString*)get$varhandle"."Label;§";
 
-            $vardefineoutputs .= "§+ (NSString*)get$varhandle"."Label:(int);§";
+            $vardefineoutputs .= "§+ (NSString*)get$varhandle"."Label:(int)i;§";
             $vardefineoutputs .= "{§";
             $vardefineoutputs .= "    switch(i) {§";
 
@@ -669,6 +687,11 @@ function compileObject($object) {
     fout("}§§");
     fout($varprops);
 
+    // Custom functions
+    fout("§// Custom");
+    fout($headercustom);
+    fout("// End Custom§");
+
     // Instance and init
     fout("§// Base functions§");
     fout("- (id)init;§");
@@ -705,6 +728,13 @@ function compileObject($object) {
 
     $fname = $classname.".m";
     $fpath = $dirPath.$fname;
+
+    if (file_exists($fpath)) {
+        $contents = file_get_contents($fpath);
+        $codecustom = getTextBetweenStrings($contents,"#pragma mark - Custom","#pragma mark - End Custom");
+    } else
+        $codecustom = "§§";
+
     $fileOut = fopen($fpath,"w");
     lout("Opened $fname for writing.");
 
@@ -720,6 +750,10 @@ function compileObject($object) {
 
     // Synthesize
     fout("$varsynth;§");
+
+    fout("§#pragma mark - Custom");
+    fout($codecustom);
+    fout("#pragma mark - End Custom§");
 
     // Adders
     if ($varadders!="") {
