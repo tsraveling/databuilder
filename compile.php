@@ -380,9 +380,16 @@ function compileObject($object) {
     {
         // Get the variable name
         $varname = makeVarName($variable->title,$variable->kind);
+
+        // Get the variable name (eg *sTitle)
+        $vardecname = $varname;
+        if (isPointer($variable->kind))
+            $vardecname = "*".$varname;
+
         $varhandle = str_replace(" ","",$variable->title);
         $lowvar = strtolower($varhandle);
 
+        // Build the ID handle
         $idhandle = "x";
         if ($variable->kind==7) {
             $idhandle = makeIDHandle($variable->title);
@@ -415,12 +422,17 @@ function compileObject($object) {
         }
 
         // Build declarations
-        $vardecs .= "    $varc *$varname;";
+        $vardecs .= "    $varc $vardecname;";
         if (strlen($variable->comments)>0)$vardecs.=" //".$variable->comments;
         $vardecs.="§";
 
         // Build property declares
-        $varprops .= "@property (nonatomic,retain) $varc *$varname;§";
+        $varprops .= "@property ";
+        if (isPointer($variable->kind))
+            $varprops .= "(nonatomic,retain)";
+        else
+            $varprops .= "(assign)";
+        $varprops .= "$varc $vardecname;§";
 
         // Build synthesizers
         if ($varsynth != "")
@@ -436,8 +448,22 @@ function compileObject($object) {
         }
 
         // Build Encoder
-        $varencoder .= "    [encoder encodeObject:$varname forKey:@\"$varname\"];§";
-        $vardecoder .= "        if ([decoder containsValueForKey:@\"$varname\"]) $varname = [decoder decodeObjectForKey:@\"$varname\"];§";
+        if (isPointer($variable->kind))
+            $varencoder .= "    [encoder encodeObject:$varname forKey:@\"$varname\"];§";
+        else {
+            if ($variable->kind==0) $varencoder .= "    [encoder encodeObject:[NSNumber numberWithInt:$varname] forKey:@\"$varname\"];§";
+            if ($variable->kind==1) $varencoder .= "    [encoder encodeObject:[NSNumber numberWithFloat:$varname] forKey:@\"$varname\"];§";
+            if ($variable->kind==6) $varencoder .= "    [encoder encodeObject:[NSNumber numberWithBool:$varname] forKey:@\"$varname\"];§";
+        }
+
+        // Build decoder
+        if (isPointer($variable->kind))
+            $vardecoder .= "        if ([decoder containsValueForKey:@\"$varname\"]) $varname = [decoder decodeObjectForKey:@\"$varname\"];§";
+        else {
+            if ($variable->kind==0) $vardecoder .= "        if ([decoder containsValueForKey:@\"$varname\"]) $varname = [(NSNumber*)[decoder decodeObjectForKey:@\"$varname\"] intValue];§";
+            if ($variable->kind==1) $vardecoder .= "        if ([decoder containsValueForKey:@\"$varname\"]) $varname = [(NSNumber*)[decoder decodeObjectForKey:@\"$varname\"] floatValue];§";
+            if ($variable->kind==6) $vardecoder .= "        if ([decoder containsValueForKey:@\"$varname\"]) $varname = [(NSNumber*)[decoder decodeObjectForKey:@\"$varname\"] boolValue];§";
+        }
 
         // Build instance
         if ($variable->kind != 4 && $variable->in_instance == 1) { // Arrays and UIDs don't get included in the instance function
@@ -454,10 +480,7 @@ function compileObject($object) {
                 $varinstancedec .= $varhandle . ":($shorthand_varc)$lowvar";
 
             // Build instance code
-            if ($variable->kind==0)$varinstanceencode .= "    ret.$varname = [NSNumber numberWithInt:$lowvar];§";
-            if ($variable->kind==1)$varinstanceencode .= "    ret.$varname = [NSNumber numberWithFloat:$lowvar];§";
-            if ($variable->kind==6)$varinstanceencode .= "    ret.$varname = [NSNumber numberWithBool:$lowvar];§";
-            if ($variable->kind>1 && $variable->kind<6)
+            if ($variable->kind>1 && $variable->kind<7)
                 $varinstanceencode .= "    ret.$varname = $lowvar;§";
 
             if ($variable->kind==7) {
@@ -472,13 +495,12 @@ function compileObject($object) {
         }
 
         if ($variable->defaultval != "" && $variable->kind != 4 && $variable->kind != 5) {
-            if ($variable->kind == 0) $varinit .= "        $varname = [NSNumber numberWithInt:".$variable->defaultval."];§";
-            if ($variable->kind == 1) $varinit .= "        $varname = [NSNumber numberWithFloat:".$variable->defaultval."];§";
+            if (!isPointer($variable->kind))
+                $varinit .= "        $varname = ".$variable->defaultval.";§";
             if ($variable->kind == 2) $varinit .= "        $varname = @\"".$variable->defaultval."\";§";
             if ($variable->kind == 3) {
                 if ($variable->defaultval == "now")$varinit .= "        $varname = [NSDate date];§";
             }
-            if ($variable->kind == 6) $varinit .= "        $varname = [NSNumber numberWithBOOL:".$variable->defaultval."];§";
         }
 
         if ($variable->kind == 7 && $variable->title == "UID") {
@@ -519,62 +541,6 @@ function compileObject($object) {
         }
 
         // Getters and Setters
-        if ($variable->kind == 0) { // Ints
-
-            $vargetsetdec .= "- (void)set$varhandle:(int)val;§";
-            $vargetsetdec .= "- (int)get$varhandle;§";
-
-            $vargetset .= "§- (void)set$varhandle:(int)val§";
-            $vargetset .= "{§";
-            $vargetset .= "    $varname = [NSNumber numberWithInt:val];§";
-            $vargetset .= "}§";
-
-            $vargetset .= "§- (int)get$varhandle §";
-            $vargetset .= "{§";
-            $vargetset .= "    return [$varname intValue];§";
-            $vargetset .= "}§";
-
-            if ($variable->defines != "") {
-                $vargetsetdec .= "- (BOOL)is$varhandle:(int)k;§";
-
-                $vargetset .= "§- (BOOL)is$varhandle:(int)k§";
-                $vargetset .= "{§";
-                $vargetset .= "    if ([$varname intValue]==k)return TRUE;§";
-                $vargetset .= "    return FALSE;§";
-                $vargetset .= "}§";
-            }
-        }
-
-        if ($variable->kind == 1) { // Floats
-            $vargetsetdec .= "- (void)set$varhandle:(float)val;§";
-            $vargetsetdec .= "- (float)get$varhandle;§";
-
-            $vargetset .= "§- (void)set$varhandle:(float)val§";
-            $vargetset .= "{§";
-            $vargetset .= "    $varname = [NSNumber numberWithFloat:val];§";
-            $vargetset .= "}§";
-
-            $vargetset .= "§- (float)get$varhandle §";
-            $vargetset .= "{§";
-            $vargetset .= "    return [$varname floatValue];§";
-            $vargetset .= "}§";
-        }
-
-        if ($variable->kind == 6) { // Bools
-            $vargetsetdec .= "- (void)set$varhandle:(BOOL)val;§";
-            $vargetsetdec .= "- (BOOL)is$varhandle;§";
-
-            $vargetset .= "§- (void)set$varhandle:(BOOL)val§";
-            $vargetset .= "{§";
-            $vargetset .= "    $varname = [NSNumber numberWithBool:val];§";
-            $vargetset .= "}§";
-
-            $vargetset .= "§- (BOOL)is$varhandle §";
-            $vargetset .= "{§";
-            $vargetset .= "    return [$varname boolValue];§";
-            $vargetset .= "}§";
-        }
-
         if ($variable->kind == 7 && $variable->title == "UID") { // ID
             $vargetsetdec .= "- (BOOL)hasID:(NSString*)uid;§";
 
@@ -587,10 +553,10 @@ function compileObject($object) {
         // Defines
         if ($variable->kind==0 && $variable->defines!="") {
 
-            $vardefineoutputdecs .= "+ (NSString*)get$varhandle"."Label:(int)i§;§";
+            $vardefineoutputdecs .= "+ (NSString*)get$varhandle"."Label:(int)i;§";
             $vardefineoutputdecs .= "- (NSString*)get$varhandle"."Label;§";
 
-            $vardefineoutputs .= "§+ (NSString*)get$varhandle"."Label:(int)i§";
+            $vardefineoutputs .= "§+ (NSString*)get$varhandle"."Label:(int);§";
             $vardefineoutputs .= "{§";
             $vardefineoutputs .= "    switch(i) {§";
 
@@ -615,15 +581,19 @@ function compileObject($object) {
             $vardefineoutputs .= "}§";
             $vardefineoutputs .= "§- (NSString*)get$varhandle"."Label§";
             $vardefineoutputs .= "{§";
-            $vardefineoutputs .= "    return [$classname get$varhandle"."Label:[self get$varhandle]];§";
+            $vardefineoutputs .= "    return [$classname get$varhandle"."Label:$varname];§";
             $vardefineoutputs .= "}§";
         }
 
         // JSON decoder (from dictionary)
         $jsonkey = $variable->jsonkey;
         $varjsondecode .= "    if ([json objectForKey:@\"$jsonkey\"]) {§";
-        if ($variable->kind==0 || $variable->kind==1 || $variable->kind==6)
-            $varjsondecode .= "        ob.$varname = (NSNumber*)[json objectForKey:@\"$jsonkey\"];§";
+        if ($variable->kind==0)
+            $varjsondecode .= "        ob.$varname = [(NSNumber*)[json objectForKey:@\"$jsonkey\"] intValue];§";
+        if ($variable->kind==1)
+            $varjsondecode .= "        ob.$varname = [(NSNumber*)[json objectForKey:@\"$jsonkey\"] floatValue];§";
+        if ($variable->kind==6)
+            $varjsondecode .= "        ob.$varname = [(NSNumber*)[json objectForKey:@\"$jsonkey\"] boolValue];§";
         if ($variable->kind==2 || $variable->kind==7)
             $varjsondecode .= "        ob.$varname = [json objectForKey:@\"$jsonkey\"];§";
         if ($variable->kind==3) {
@@ -655,7 +625,13 @@ function compileObject($object) {
         $varjsondecode .= "    }§";
 
         // JSON encoder (encodes to NSMutableDictionary with NSArrays)
-        if ($variable->kind<=2 || $variable->kind==6 || $variable->kind==7)
+        if ($variable->kind==0)
+            $varjsonencode .= "    [dict setValue:[NSNumber numberWithInt:$varname] forKey:@\"$jsonkey\"];§";
+        if ($variable->kind==1)
+            $varjsonencode .= "    [dict setValue:[NSNumber numberWithFloat:$varname] forKey:@\"$jsonkey\"];§";
+        if ($variable->kind==6)
+            $varjsonencode .= "    [dict setValue:[NSNumber numberWithBool:$varname] forKey:@\"$jsonkey\"];§";
+        if ($variable->kind==7)
             $varjsonencode .= "    [dict setValue:$varname forKey:@\"$jsonkey\"];§";
         if ($variable->kind==3) {
             $formatter = "df_".strtolower($varhandle);
@@ -685,13 +661,6 @@ function compileObject($object) {
     // Add includes
     fout("§§#import <Foundation/Foundation.h>§");
     fout($varimports);
-    /* Old import code
-    $so_stmt = $DBH->prepare("SELECT * FROM objects WHERE parent=:pid");
-    $so_stmt->bindParam(":pid",$object->id,PDO::PARAM_INT);
-    $so_stmt->execute();
-    while ($subobject = $so_stmt->fetch()) {
-        fout( "#import \"" . makeClassName($subobject->title) . ".h\"§");
-    } */
 
     fout($vardefines);
 

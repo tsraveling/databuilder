@@ -400,13 +400,13 @@ function variableType($i)
 
 function variableClassType($i)
 {
-    if ($i==0)return "NSNumber";
-    if ($i==1)return "NSNumber";
+    if ($i==0)return "int";
+    if ($i==1)return "float";
     if ($i==2)return "NSString";
     if ($i==3)return "NSDate";
     if ($i==4)return "NSMutableArray";
     if ($i==5)return "x";
-    if ($i==6)return "NSNumber";
+    if ($i==6)return "BOOL";
     if ($i==7)return "NSString";
     return "Unknown";
 }
@@ -422,13 +422,13 @@ function shorthandClassType($i)
 function makeVarName($nm,$type)
 {
     $ret = "";
-    if ($type==0)$ret="n";
-    if ($type==1)$ret="n";
+    if ($type==0)$ret="i";
+    if ($type==1)$ret="f";
     if ($type==2)$ret="s";
     if ($type==3)$ret="dt";
     if ($type==4)$ret="a";
     if ($type==5)$ret="o";
-    if ($type==6)$ret="n";
+    if ($type==6)$ret="b";
     if ($type==7)$ret="s";
 
     $ret .= str_replace(" ","",$nm);
@@ -531,15 +531,20 @@ function handleFromTitle($title)
 
 function populatorWith($kind,$val)
 {
-    if ($kind==0) return "[NSNumber numberWithInt:".$val."]";
-    if ($kind==1) return "[NSNumber numberWithFloat:".$val."]";
+    if ($kind==0) return $val;
+    if ($kind==1) return $val."f";
     if ($kind==2) return "@\"".$val."\"";
-    if ($kind==6) return "[NSNumber numberWithBool:".$val."]";
+    if ($kind==6) return $val;
     if ($kind==7) {
         return "@\"const".$val."\"";
         // $populaterCode .= "    ob.".makeIDHandle($variable->title)." = ".$varres->val.";§";
     }
     return "ERROR";
+}
+
+function isPointer($kind) {
+    if ($kind==0 || $kind==1 || $kind==6)return false;
+    return true;
 }
 
 ?>
