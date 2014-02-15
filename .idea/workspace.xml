@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6b52590-cfdf-499a-83ac-0e4ef047c7d5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap.php" afterPath="$PROJECT_DIR$/bootstrap.php" />
+    <list default="true" id="e6b52590-cfdf-499a-83ac-0e4ef047c7d5" name="Default" comment="Added databuild function persistance to populater&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compile.php" afterPath="$PROJECT_DIR$/compile.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -69,19 +68,46 @@
       <file leaf-file-name="compile.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/compile.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="257" column="29" selection-start="8329" selection-end="8329" vertical-scroll-proportion="0.80099505" vertical-offset="3372" max-vertical-offset="14220">
+            <state line="727" column="28" selection-start="26740" selection-end="26740" vertical-scroll-proportion="-3.1767764" vertical-offset="12738" max-vertical-offset="14550">
               <folding>
                 <element signature="e#6#92#0" expanded="true" />
-                <marker date="1392324948000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
-                <marker date="1392324948000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
-                <marker date="1392324948000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
-                <marker date="1392324948000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
-                <marker date="1392324948000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
-                <marker date="1392324948000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
-                <marker date="1392324948000" expanded="true" signature="29073:29120" placeholder="SELECT * FRO..defaults..." />
-                <marker date="1392324948000" expanded="true" signature="30372:30422" placeholder="SELECT * FRO..defaultvar..." />
-                <marker date="1392324948000" expanded="true" signature="31389:31437" placeholder="SELECT * FRO..defaults..." />
-                <marker date="1392324948000" expanded="true" signature="31951:32001" placeholder="SELECT * FRO..defaultvar..." />
+                <marker date="1392326396000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
+                <marker date="1392326396000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
+                <marker date="1392326396000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
+                <marker date="1392326396000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
+                <marker date="1392326396000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
+                <marker date="1392326396000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
+                <marker date="1392326396000" expanded="true" signature="18099:18912" placeholder="SELECT * FRO..objects..." />
+                <marker date="1392326396000" expanded="true" signature="18099:18139" placeholder="SELECT * FRO..objects..." />
+                <marker date="1392326396000" expanded="true" signature="18461:18912" placeholder="SELECT * FRO..variables..." />
+                <marker date="1392326396000" expanded="true" signature="18461:18518" placeholder="SELECT * FRO..variables..." />
+                <marker date="1392326396000" expanded="true" signature="29972:30019" placeholder="SELECT * FRO..defaults..." />
+                <marker date="1392326396000" expanded="true" signature="31271:31321" placeholder="SELECT * FRO..defaultvar..." />
+                <marker date="1392326396000" expanded="true" signature="32288:32336" placeholder="SELECT * FRO..defaults..." />
+                <marker date="1392326396000" expanded="true" signature="32850:32900" placeholder="SELECT * FRO..defaultvar..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="object.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/object.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="19" selection-start="760" selection-end="760" vertical-scroll-proportion="-18.125" vertical-offset="15" max-vertical-offset="2070">
+              <folding>
+                <marker date="1391076918000" expanded="true" signature="1759:1813" placeholder="SELECT * FRO..objects..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="variable.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/variable.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="18" selection-start="1527" selection-end="1527" vertical-scroll-proportion="-17.5" vertical-offset="270" max-vertical-offset="1335">
+              <folding>
+                <marker date="1391077064000" expanded="false" signature="1833:1845" placeholder="..." />
+                <marker date="1391077064000" expanded="true" signature="2097:2156" placeholder="SELECT * FRO..objects..." />
               </folding>
             </state>
           </provider>
@@ -389,7 +415,11 @@
       <created>1392320173293</created>
       <updated>1392320173293</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added databuild function persistance to populater">
+      <created>1392324989854</created>
+      <updated>1392324989854</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -443,7 +473,8 @@
     <MESSAGE value="Autoselects first input or select in subob when added, other misc tweaks" />
     <MESSAGE value="Preparing to change NSNumbers to their bases" />
     <MESSAGE value="NSNumbers changed to base, preparing to add custom code chunk." />
-    <option name="LAST_COMMIT_MESSAGE" value="NSNumbers changed to base, preparing to add custom code chunk." />
+    <MESSAGE value="Added databuild function persistance to populater" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added databuild function persistance to populater" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -517,16 +548,20 @@
         <state line="395" column="10" selection-start="13717" selection-end="13717" vertical-scroll-proportion="0.0" vertical-offset="5496" max-vertical-offset="10875">
           <folding>
             <element signature="e#6#92#0" expanded="true" />
-            <marker date="1392324948000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
-            <marker date="1392324948000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="29073:29120" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="30372:30422" placeholder="SELECT * FRO..defaultvar..." />
-            <marker date="1392324948000" expanded="true" signature="31389:31437" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="31951:32001" placeholder="SELECT * FRO..defaultvar..." />
+            <marker date="1392326396000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
+            <marker date="1392326396000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18099:18912" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18099:18139" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18461:18912" placeholder="SELECT * FRO..variables..." />
+            <marker date="1392326396000" expanded="true" signature="18461:18518" placeholder="SELECT * FRO..variables..." />
+            <marker date="1392326396000" expanded="true" signature="29972:30019" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="31271:31321" placeholder="SELECT * FRO..defaultvar..." />
+            <marker date="1392326396000" expanded="true" signature="32288:32336" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="32850:32900" placeholder="SELECT * FRO..defaultvar..." />
           </folding>
         </state>
       </provider>
@@ -609,16 +644,20 @@
         <state line="356" column="54" selection-start="12034" selection-end="12034" vertical-scroll-proportion="0.0" vertical-offset="5340" max-vertical-offset="10545">
           <folding>
             <element signature="e#6#92#0" expanded="true" />
-            <marker date="1392324948000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
-            <marker date="1392324948000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="29073:29120" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="30372:30422" placeholder="SELECT * FRO..defaultvar..." />
-            <marker date="1392324948000" expanded="true" signature="31389:31437" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="31951:32001" placeholder="SELECT * FRO..defaultvar..." />
+            <marker date="1392326396000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
+            <marker date="1392326396000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18099:18912" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18099:18139" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18461:18912" placeholder="SELECT * FRO..variables..." />
+            <marker date="1392326396000" expanded="true" signature="18461:18518" placeholder="SELECT * FRO..variables..." />
+            <marker date="1392326396000" expanded="true" signature="29972:30019" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="31271:31321" placeholder="SELECT * FRO..defaultvar..." />
+            <marker date="1392326396000" expanded="true" signature="32288:32336" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="32850:32900" placeholder="SELECT * FRO..defaultvar..." />
           </folding>
         </state>
       </provider>
@@ -701,16 +740,20 @@
         <state line="512" column="67" selection-start="19416" selection-end="19416" vertical-scroll-proportion="0.0" vertical-offset="2800" max-vertical-offset="10290">
           <folding>
             <element signature="e#6#92#0" expanded="true" />
-            <marker date="1392324948000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
-            <marker date="1392324948000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="29073:29120" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="30372:30422" placeholder="SELECT * FRO..defaultvar..." />
-            <marker date="1392324948000" expanded="true" signature="31389:31437" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="31951:32001" placeholder="SELECT * FRO..defaultvar..." />
+            <marker date="1392326396000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
+            <marker date="1392326396000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18099:18912" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18099:18139" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18461:18912" placeholder="SELECT * FRO..variables..." />
+            <marker date="1392326396000" expanded="true" signature="18461:18518" placeholder="SELECT * FRO..variables..." />
+            <marker date="1392326396000" expanded="true" signature="29972:30019" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="31271:31321" placeholder="SELECT * FRO..defaultvar..." />
+            <marker date="1392326396000" expanded="true" signature="32288:32336" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="32850:32900" placeholder="SELECT * FRO..defaultvar..." />
           </folding>
         </state>
       </provider>
@@ -793,16 +836,20 @@
         <state line="512" column="67" selection-start="19416" selection-end="19416" vertical-scroll-proportion="0.0" vertical-offset="7315" max-vertical-offset="10290">
           <folding>
             <element signature="e#6#92#0" expanded="true" />
-            <marker date="1392324948000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
-            <marker date="1392324948000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="29073:29120" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="30372:30422" placeholder="SELECT * FRO..defaultvar..." />
-            <marker date="1392324948000" expanded="true" signature="31389:31437" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="31951:32001" placeholder="SELECT * FRO..defaultvar..." />
+            <marker date="1392326396000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
+            <marker date="1392326396000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18099:18912" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18099:18139" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18461:18912" placeholder="SELECT * FRO..variables..." />
+            <marker date="1392326396000" expanded="true" signature="18461:18518" placeholder="SELECT * FRO..variables..." />
+            <marker date="1392326396000" expanded="true" signature="29972:30019" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="31271:31321" placeholder="SELECT * FRO..defaultvar..." />
+            <marker date="1392326396000" expanded="true" signature="32288:32336" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="32850:32900" placeholder="SELECT * FRO..defaultvar..." />
           </folding>
         </state>
       </provider>
@@ -890,16 +937,20 @@
         <state line="180" column="68" selection-start="6152" selection-end="6152" vertical-scroll-proportion="0.0" vertical-offset="2359" max-vertical-offset="9840">
           <folding>
             <element signature="e#6#92#0" expanded="true" />
-            <marker date="1392324948000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
-            <marker date="1392324948000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="29073:29120" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="30372:30422" placeholder="SELECT * FRO..defaultvar..." />
-            <marker date="1392324948000" expanded="true" signature="31389:31437" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="31951:32001" placeholder="SELECT * FRO..defaultvar..." />
+            <marker date="1392326396000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
+            <marker date="1392326396000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18099:18912" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18099:18139" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18461:18912" placeholder="SELECT * FRO..variables..." />
+            <marker date="1392326396000" expanded="true" signature="18461:18518" placeholder="SELECT * FRO..variables..." />
+            <marker date="1392326396000" expanded="true" signature="29972:30019" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="31271:31321" placeholder="SELECT * FRO..defaultvar..." />
+            <marker date="1392326396000" expanded="true" signature="32288:32336" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="32850:32900" placeholder="SELECT * FRO..defaultvar..." />
           </folding>
         </state>
       </provider>
@@ -954,19 +1005,9 @@
         <state line="545" column="12" selection-start="9184" selection-end="9184" vertical-scroll-proportion="0.8390625" vertical-offset="7638" max-vertical-offset="8340" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/object.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="19" selection-start="760" selection-end="760" vertical-scroll-proportion="0.6268657" vertical-offset="72" max-vertical-offset="2070" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/object-ajax.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="36" selection-start="958" selection-end="958" vertical-scroll-proportion="-0.12437811" vertical-offset="435" max-vertical-offset="1140" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/variable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="18" selection-start="1527" selection-end="1527" vertical-scroll-proportion="0.48701298" vertical-offset="390" max-vertical-offset="1335" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/review.php">
@@ -1053,21 +1094,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/object.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="19" selection-start="760" selection-end="760" vertical-scroll-proportion="-18.125" vertical-offset="15" max-vertical-offset="2070">
+          <folding>
+            <marker date="1391076918000" expanded="true" signature="1759:1813" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="18" selection-start="1527" selection-end="1527" vertical-scroll-proportion="-17.5" vertical-offset="270" max-vertical-offset="1335">
+          <folding>
+            <marker date="1391077064000" expanded="false" signature="1833:1845" placeholder="..." />
+            <marker date="1391077064000" expanded="true" signature="2097:2156" placeholder="SELECT * FRO..objects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/compile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="257" column="29" selection-start="8329" selection-end="8329" vertical-scroll-proportion="0.80099505" vertical-offset="3372" max-vertical-offset="14220">
+        <state line="727" column="28" selection-start="26740" selection-end="26740" vertical-scroll-proportion="-3.1767764" vertical-offset="12738" max-vertical-offset="14550">
           <folding>
             <element signature="e#6#92#0" expanded="true" />
-            <marker date="1392324948000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
-            <marker date="1392324948000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
-            <marker date="1392324948000" expanded="true" signature="29073:29120" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="30372:30422" placeholder="SELECT * FRO..defaultvar..." />
-            <marker date="1392324948000" expanded="true" signature="31389:31437" placeholder="SELECT * FRO..defaults..." />
-            <marker date="1392324948000" expanded="true" signature="31951:32001" placeholder="SELECT * FRO..defaultvar..." />
+            <marker date="1392326396000" expanded="true" signature="952:988" placeholder="SELECT * FRO..projects..." />
+            <marker date="1392326396000" expanded="true" signature="2218:2272" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="2497:2550" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="8862:8883" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="8980:9027" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="9910:9964" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18099:18912" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18099:18139" placeholder="SELECT * FRO..objects..." />
+            <marker date="1392326396000" expanded="true" signature="18461:18912" placeholder="SELECT * FRO..variables..." />
+            <marker date="1392326396000" expanded="true" signature="18461:18518" placeholder="SELECT * FRO..variables..." />
+            <marker date="1392326396000" expanded="true" signature="29972:30019" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="31271:31321" placeholder="SELECT * FRO..defaultvar..." />
+            <marker date="1392326396000" expanded="true" signature="32288:32336" placeholder="SELECT * FRO..defaults..." />
+            <marker date="1392326396000" expanded="true" signature="32850:32900" placeholder="SELECT * FRO..defaultvar..." />
           </folding>
         </state>
       </provider>

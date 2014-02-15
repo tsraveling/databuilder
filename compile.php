@@ -447,9 +447,9 @@ function compileObject($object) {
         // Build property declares
         $varprops .= "@property ";
         if (isPointer($variable->kind))
-            $varprops .= "(nonatomic,retain)";
+            $varprops .= "(nonatomic,retain) ";
         else
-            $varprops .= "(assign)";
+            $varprops .= "(assign) ";
         $varprops .= "$varc $vardecname;§";
 
         // Build synthesizers
@@ -544,18 +544,40 @@ function compileObject($object) {
 
             // Getter based on UID
 
-            $varaddersdec .= "// - (".$variable->class."*)get$addname"."ForID:(int)i;§";
+            $subcstmt = $DBH->prepare("SELECT * FROM objects WHERE project=:pid");
+            $subcstmt->bindParam(":pid",$object->project,PDO::PARAM_INT);
+            $subcstmt->execute();
+
+            $commentout = true;
+            while ($subcres = $subcstmt->fetch()) {
+                if (makeClassName($subcres->title) == $variable->class) {
+
+                    $checkidstmt = $DBH->prepare("SELECT * FROM variables WHERE parent=:oid AND title='UID'");
+                    $checkidstmt->bindParam(":oid",$subcres->id,PDO::PARAM_INT);
+                    $checkidstmt->execute();
+                    if ($checkidstmt->rowCount()) {
+                        $commentout = false;
+                        break;
+                    }
+                }
+            }
+
+            if ($commentout) $varaddersdec .= "// ";
+            $varaddersdec .= "- (".$variable->class."*)get$addname"."ForID:(int)i;§";
 
             $varadders .= "§// Get from array by id§";
-            $varadders .= "/*§";
+            if ($commentout)
+                $varadders .= "/*§";
             $varadders .= "- (".$variable->class."*)get$addname"."ForID:(int)i§";
             $varadders .= "{§";
             $varadders .= "    for (".$variable->class." *ob in $varname) {§";
-            $varadders .= "        if ([ob hasID:[NSString stringWithFormat:@\"const%i\",i]])§";
+            $varadders .= "        if (ob.iid == i)§";
             $varadders .= "            return ob;§";
             $varadders .= "    }§";
             $varadders .= "    return nil;§";
-            $varadders .= "}§ */§";
+            $varadders .= "}§";
+            if ($commentout)
+                $varadders .= "*/§";
         }
 
         // Getters and Setters
@@ -701,7 +723,7 @@ function compileObject($object) {
     fout("- (NSDictionary*)toJSON;§");
 
     // Declare getters and setters
-    if ($vargetsetdec != "") {
+    if ($vargetsetdec != "" || $varaddersdec != "") {
         fout("§// Getters and Setters§");
         fout($vargetsetdec);
         fout($varaddersdec);
@@ -845,9 +867,9 @@ function compileObject($object) {
     if ($stmt->rowCount()>0) {
 
         // Start population function
-        $populaterHeader .= "-(NSMutableArray*)getPopulated$classhandle"."Array;§";
+        $populaterHeader .= "+(NSMutableArray*)getPopulated$classhandle"."Array;§";
         $populaterCode .= "§// Populater function for ".$object->title."§";
-        $populaterCode .=  "-(NSMutableArray*)getPopulated$classhandle"."Array§";
+        $populaterCode .=  "+(NSMutableArray*)getPopulated$classhandle"."Array§";
         $populaterCode .= "{§";
         $populaterCode .= "    NSMutableArray *ar = [[NSMutableArray alloc] init];§";
         $populaterCode .= "    $classname *ob;§";
