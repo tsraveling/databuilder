@@ -124,7 +124,7 @@ if ($editingRes) {
     // COMPILE
     startBlock("Compile");
     doLink("Review Object and Children","review.php?id=".$editingRes["project"]."#".makeClassName(objectNameForId($_GET["id"])));
-    doLink("Compile Object and Children to Objective-C","compile.php?id=".$editingRes["project"]."&object=".$_GET["id"]);
+    doLink("Compile Object and Children to Objective-C","compile.php?id=".$editingRes["project"]."&object=".$_GET["id"],true);
     endBlock();
 }
 

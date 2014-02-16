@@ -64,7 +64,7 @@ if ($editingRes) {
 // COMPILE
 startBlock("Compile");
 doLink("Review Project","review.php?id=".$_GET["id"]);
-doLink("Compile to Objective-C","compile.php?id=".$_GET["id"]);
+doLink("Compile to Objective-C","compile.php?id=".$_GET["id"],true);
 endBlock();
 
 do_footer();

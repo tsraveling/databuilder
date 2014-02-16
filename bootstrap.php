@@ -128,9 +128,11 @@ function getSecret()
 
 /* LINKS */
 
-function doLink($label,$url)
+function doLink($label,$url,$newwindow=false)
 {
-	echo "<a href='$url' class='link-button'>$label</a>";
+	echo "<a href='$url' class='link-button'";
+    if ($newwindow)echo " target='_blank'";
+    echo ">$label</a>";
 }
 
 /* VALUES */

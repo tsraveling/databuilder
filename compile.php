@@ -473,6 +473,7 @@ function compileObject($object) {
             if ($variable->kind==1) $varencoder .= "    [encoder encodeObject:[NSNumber numberWithFloat:$varname] forKey:@\"$varname\"];§";
             if ($variable->kind==6) $varencoder .= "    [encoder encodeObject:[NSNumber numberWithBool:$varname] forKey:@\"$varname\"];§";
         }
+        if ($variable->kind==7) $varencoder .= "    [encoder encodeObject:[NSNumber numberWithInt:$idhandle] forKey:@\"$idhandle\"];§";
 
         // Build decoder
         if (isPointer($variable->kind))
@@ -482,6 +483,7 @@ function compileObject($object) {
             if ($variable->kind==1) $vardecoder .= "        if ([decoder containsValueForKey:@\"$varname\"]) $varname = [(NSNumber*)[decoder decodeObjectForKey:@\"$varname\"] floatValue];§";
             if ($variable->kind==6) $vardecoder .= "        if ([decoder containsValueForKey:@\"$varname\"]) $varname = [(NSNumber*)[decoder decodeObjectForKey:@\"$varname\"] boolValue];§";
         }
+        if ($variable->kind==7) $vardecoder .= "        if ([decoder containsValueForKey:@\"$idhandle\"]) $idhandle = [(NSNumber*)[decoder decodeObjectForKey:@\"$idhandle\"] intValue];§";
 
         // Build instance
         if ($variable->kind != 4 && $variable->in_instance == 1) { // Arrays and UIDs don't get included in the instance function
@@ -662,6 +664,8 @@ function compileObject($object) {
         if ($variable->kind==5) {
             $varjsondecode .= "        ob.$varname = [".$variable->class." fromJSON:(NSDictionary*)[json objectForKey:@\"$jsonkey\"]];§";
         }
+        if ($variable->kind==7)
+            $varjsondecode .= "        ob.$idhandle = [(NSNumber*)[json objectForKey:@\"$idhandle\"] intValue];§";
         $varjsondecode .= "    }§";
 
         // JSON encoder (encodes to NSMutableDictionary with NSArrays)
@@ -671,8 +675,10 @@ function compileObject($object) {
             $varjsonencode .= "    [dict setValue:[NSNumber numberWithFloat:$varname] forKey:@\"$jsonkey\"];§";
         if ($variable->kind==6)
             $varjsonencode .= "    [dict setValue:[NSNumber numberWithBool:$varname] forKey:@\"$jsonkey\"];§";
-        if ($variable->kind==7)
+        if ($variable->kind==7) {
             $varjsonencode .= "    [dict setValue:$varname forKey:@\"$jsonkey\"];§";
+            $varjsonencode .= "    [dict setValue:[NSNumber numberWithInt:$idhandle] forKey:@\"$idhandle\"];§";
+        }
         if ($variable->kind==3) {
             $formatter = "df_".strtolower($varhandle);
             $varjsonencode .= "§    // Encode date for $varname §";
